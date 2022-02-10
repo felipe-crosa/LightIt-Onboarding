@@ -1,0 +1,27 @@
+
+
+CURL CHALLENGE:
+
+1) curl https://httpbin.org
+2) curl https://httpbin.org/anything
+3) curl -X POST -d "name=Felipe" https://httpbin.org/anything
+4) curl -X GET -d "value=panda" https://httpbin.org/anything
+5) curl -O www.google.com/robots.txt
+6) curl https://httpbin.org/anything -H "User-Agent: elephant"
+7) curl -X DELETE https://httpbin.org/anything
+8) curl -i https://httpbin.org/anything
+9) curl -X POST https://httpbin.org/anything -d '{"value": "panda"}'
+10) curl -X POST https://httpbin.org/anything -H 'Content-Type: application/json' -d '{"value": "panda"}'
+11) curl https://httpbin.org/anything -H 'Accept-Encoding: gzip'
+12) curl -X POST https://httpbin.org/anything  -H 'Content-Type: application/json' -d "@LightIt/JSON_file.json"
+13) curl -o "image.png" -H 'Accept:image/png' https://httpbin.org/image 
+    curl -o "image.png" -H 'Accept:image/jpeg' https://httpbin.org/image
+14) curl -T "image.png" https://httpbin.org/anything
+15) curl -o "image.jpeg" -H 'Accept:image/jpeg' https://httpbin.org/image/jpeg
+16) curl -i https://www.twitter.com  -> code-status: 301 site moved permanently  
+    curl -i https://www.twitter.com -L -> redirects to twitter current page
+17) curl https://httpbin.org/anything -H 'panda:elephant'
+18) curl https://httpbin.org/status/404 https://httpbin.org/status/200
+    curl -i https://httpbin.org/status/404 https://httpbin.org/status/200
+19) curl https://httpbin.org/anything -u felipe:1234
+20) curl -o "twitter.txt" -H "Accept-Language: es-ES" https://twitter.com

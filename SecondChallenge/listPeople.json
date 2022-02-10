@@ -1,0 +1,29 @@
+[
+    {
+        "firstName":"Felipe",
+        "lastName":"Crosa",
+        "email":"felipe@lightit.io",
+        "roles":["Intern","Student"]
+    },
+    {
+        "firstName":"Pedro",
+        "lastName":"Gimenez",
+        "email":"pedro@lightit.io",
+        "roles":["Profesor"]
+
+    },
+    {
+        "firstName":"Agustina",
+        "lastName":"Perez",
+        "email":"agustina@gmail.com",
+        "roles":["Student","Programmer"]
+
+    },
+    {
+        "firstName":"Axel",
+        "lastName":"Fernandez",
+        "email":"axel@lightit.io",
+        "roles":["Intern","Developer","Programmer"]
+
+    }
+]
