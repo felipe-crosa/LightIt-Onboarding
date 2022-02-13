@@ -26,53 +26,57 @@ class ShowCommand extends Command{
     }
     
     public function execute(InputInterface $input,OutputInterface $output){
-        $movie_name=$input->getArgument('movie_name');
+        $movie_name = $input->getArgument('movie_name');
         
-        $plotLength=($input->getOption('fullPlot')) ? "full":"";
+        $plotLength = ($input->getOption('fullPlot')) ? "full" : "";
         
-        $url="http://www.omdbapi.com";
+        $url = "http://www.omdbapi.com";
 
-        $api_key='d0de643b';
+        $api_key = 'd0de643b';
 
-        $response=$this->client->request('GET',$url,['query'=>['t'=>$movie_name,'plot'=>$plotLength,'apikey'=>$api_key]]);
+        $response = $this->client->request('GET' , $url , ['query'=>['t' => $movie_name, 
+                                                                    'plot' => $plotLength, 
+                                                                    'apikey'=> $api_key]]);
         
-        $contents=$response->getBody()->getContents();
+        $contents = $response->getBody()->getContents();
         $movie_info = json_decode($contents, true);
-        if($movie_info['Response']=='False'){
-            $message="ERROR: ".$movie_info['Error'];
+        if($movie_info['Response'] == 'False'){
+            $message = "ERROR: ".$movie_info['Error'];
             $output->writeln("<error>{$message}</error>");
             exit(0);
         }
         
         unset($movie_info['Ratings']);
-        $movie_year=$this->getYear($movie_info);
-        $table_title=$movie_name . "  -  ". $movie_year;
+        $movie_year = $this->getYear($movie_info);
+        $table_title = $movie_name . "  -  ". $movie_year;
 
 
-        $output->writeln("<info>{$table_title}</info>");
+       
         $this->displayTable($movie_info,$output);
-       
-       
-        //$output->writeln(array_keys($response)); 
         return 0;
     }
 
     public function displayTable($movie_info,$output){
-        $table=new Table($output);
-        $information_column=1;
+        $table_title = $movie_info['Title']."  -  ".$movie_info['Year'];
+
+
+        $table = new Table($output);
+        $information_column = 1;
 
         $table->setRows($this->parseMovieInformation($movie_info))
             ->setColumnMaxWidth($information_column,150);
-            
+        
+
+        $output->writeln("<info>{$table_title}</info>");
         $table->render();
 
 
     }
 
     public function parseMovieInformation($movie_info){
-        $parsedInformation=array();
+        $parsedInformation = array();
         foreach($movie_info as $key=>$value){
-            $parsedInformation[]=[$key,$value];
+            $parsedInformation[] = [$key,$value];
         }
         return $parsedInformation;
         
