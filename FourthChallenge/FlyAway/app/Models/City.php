@@ -9,9 +9,25 @@ class City extends Model
 {
     use HasFactory;
 
+    public function scopeFilter($query, array $filters)
+    {
+        
+        $query->when($filters['airline'] ?? false, fn($query, $airline) =>
+            $query
+        );
 
-    public function airlines(){
-        return $this->belongsToMany(Airline::class,'airline_city','city_id','airline_id');
+       
+    }
+
+
+
+
+    public function departing_flights(){
+        return $this->hasMany(Flight::class,'departure_id','id');
+    }
+
+    public function arriving_flights(){
+        return $this->hasMany(Flight::class,'arrival_id','id');
     }
     
 }

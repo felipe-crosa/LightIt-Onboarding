@@ -105,7 +105,6 @@
       <path value="$PROJECT_DIR$/FlyAway/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/php-cors" />
-      <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/webmozart/assert" />

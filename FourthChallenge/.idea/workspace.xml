@@ -4,11 +4,14 @@
     <list default="true" id="9bcaaa7c-171a-44cb-a404-159d7827f147" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlyAway/.env" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_files.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_files.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/app/Models/Flight.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/app/Models/Flight.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/resources/views/components/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/resources/views/components/table.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table_header.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table_heading.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table_row.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +133,6 @@
       <path value="$PROJECT_DIR$/FlyAway/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/php-cors" />
-      <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/webmozart/assert" />
@@ -168,6 +170,7 @@
       <workItem from="1645554632764" duration="328000" />
       <workItem from="1645555282962" duration="74000" />
       <workItem from="1645563146335" duration="1009000" />
+      <workItem from="1645639004542" duration="1129000" />
     </task>
     <servers />
   </component>

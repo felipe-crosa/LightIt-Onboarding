@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use App\Models\Airline;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome',['airlines'=>Airline::all()]);
+    return view('index-flights',['flights'=>Airline::all()]);
 });
+Route::get('airlines', function () {
+    return view('airlines',['airlines'=>Airline::all()]);
+});
+
+Route::get('city.index', [CityController::class , 'index' ]);

@@ -1,81 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<title>Laravel From Scratch Blog</title>
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Laravel</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
 
-<style>
 
-    .clamp {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
 
-    .clamp.one-line {
-        -webkit-line-clamp: 1;
-    }
-</style>
+</head>
 
-<body style="font-family: Open Sans, sans-serif">
-    <section class="px-6 py-8">
-        <nav class="md:flex md:justify-between md:items-center">
+
+
+
+<body style="font-family: Open Sans, sans-serif" class="bg-slate-300">
+    <section class="px-3 py-4">
+        <nav class="mt-0 md:flex md:justify-between md:items-center bg-slate-600 border border-black border-opacity-5 rounded-xl text-center py-6 px-10">
             <div>
-                <a href="/">
-                    <img src="/images/logo.svg" alt="Laracasts Logo" width="165" height="16">
+                <a href="/" class="flex">
+                    <img src="/images/plane.svg" alt="" class="mx-auto" style="width: 50px;">
+                    <p class="px-3"><strong> FlyAway</strong> </p>
                 </a>
             </div>
 
-            
-                
+            <div class="mt-8 md:mt-0 flex items-center">
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='#'>Flights</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='#'>Airlines</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='#'>Cities</a>
+            </div>
+
+
         </nav>
 
         {{ $slot }}
 
-        <footer id="newsletter"
-                class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16"
-        >
-            <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
+        <footer id="footer"
+            class="bg-slate-600 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+            <img src="/images/plane.svg" alt="" class="mx-auto mb-3" style="width: 100px;">
 
-            <h5 class="text-3xl">Stay in touch with the latest posts</h5>
-            <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
+            <h5 class="text-3xl">If traveling, think of FlyAway!</h5>
+            <p class="text-sm mt-3">The best way to plan your flights.</p>
 
-            <div class="mt-10">
-                <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="/newsletter" class="lg:flex text-sm">
-                        @csrf
-
-                        <div class="lg:py-3 lg:px-5 flex items-center">
-                            <label for="email" class="hidden lg:inline-block">
-                                <img src="/images/mailbox-icon.svg" alt="mailbox letter">
-                            </label>
-
-                            <div>
-                                <input id="email"
-                                       name="email"
-                                       type="text"
-                                       placeholder="Your email address"
-                                       class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
-
-                                @error('email')
-                                    <span class="text-xs text-red-500">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <button type="submit"
-                                class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
-                </div>
-            </div>
         </footer>
     </section>
 
-    
+
 </body>
+
+</html>
