@@ -24,4 +24,4 @@ Route::get('airlines', function () {
 });
 
 
-Route::resource('cities',CityController::class)->except('create');
+Route::resource('cities',CityController::class)->except(['create','show']);

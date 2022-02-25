@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CityController extends Controller
 {
@@ -21,7 +22,7 @@ class CityController extends Controller
     {
     //validate city 
         $attributes= request()->validate([
-            'name'=>'required'
+            'name'=>['required','max:255',Rule::unique('cities','name')->ignore($city)]
         ]);
     //Update it
         $city->update($attributes);
@@ -35,7 +36,7 @@ class CityController extends Controller
 
     public function store(){
         $arguments=request()->validate([
-            'name'=>'required|regex:/^[\pL\s\-]+$/u|unique:cities,name'
+            'name'=>'required|regex:/^[\pL\s\-]+$/u|unique:cities,name|max:255'
         ]);
 
         City::create($arguments);

@@ -29,9 +29,9 @@
             </div>
 
             <div class="mt-8 md:mt-0 flex items-center">
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='flights'>Flights</a>
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='airlines'>Airlines</a>
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='cities'>Cities</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='/flights'>Flights</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='/airlines'>Airlines</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='/cities'>Cities</a>
             </div>
 
 
