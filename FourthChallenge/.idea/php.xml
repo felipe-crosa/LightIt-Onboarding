@@ -105,7 +105,6 @@
       <path value="$PROJECT_DIR$/FlyAway/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/php-cors" />
-      <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/webmozart/assert" />
@@ -113,5 +112,11 @@
       <path value="$PROJECT_DIR$/FlyAway/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/brick/math" />
     </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/FlyAway/vendor/autoload.php" />
+    </phpunit_settings>
   </component>
 </project>

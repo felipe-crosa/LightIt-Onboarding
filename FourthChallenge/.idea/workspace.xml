@@ -2,108 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9bcaaa7c-171a-44cb-a404-159d7827f147" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/FourthChallenge.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/.styleci.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Console/Kernel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Exceptions/Handler.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Kernel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/EncryptCookies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/PreventRequestsDuringMaintenance.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/TrimStrings.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/TrustHosts.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/TrustProxies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Models/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Providers/BroadcastServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/artisan" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/bootstrap/app.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/bootstrap/cache/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/composer.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/app.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/broadcasting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/cache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/cors.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/database.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/filesystems.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/hashing.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/logging.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/mail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/queue.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/sanctum.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/services.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/session.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/config/view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/factories/UserFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/lang/en.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/lang/en/auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/lang/en/pagination.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/lang/en/passwords.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/lang/en/validation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/public/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/public/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/resources/css/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/resources/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/resources/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/resources/views/welcome.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/routes/api.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/routes/channels.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/routes/console.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/routes/web.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/app/public/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/framework/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/framework/cache/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/framework/cache/data/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/framework/sessions/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/framework/testing/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/framework/views/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/storage/logs/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/tests/CreatesApplication.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/tests/Feature/ExampleTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/tests/TestCase.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/tests/Unit/ExampleTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FlyAway/webpack.mix.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/app/Models/Flight.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/app/Models/Flight.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/resources/views/components/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/resources/views/components/table.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table_header.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table_heading.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/components/table_row.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/resources/views/welcome.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FlyAway/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/FlyAway/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/FlyAway/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -210,7 +133,6 @@
       <path value="$PROJECT_DIR$/FlyAway/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/php-cors" />
-      <path value="$PROJECT_DIR$/FlyAway/vendor/fruitcake/laravel-cors" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/FlyAway/vendor/webmozart/assert" />
@@ -230,6 +152,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -241,10 +164,21 @@
       <option name="presentableId" value="Default" />
       <updated>1645540255547</updated>
       <workItem from="1645540257726" duration="352000" />
+      <workItem from="1645541862257" duration="344000" />
+      <workItem from="1645542295932" duration="3097000" />
+      <workItem from="1645552640324" duration="1478000" />
+      <workItem from="1645554632764" duration="328000" />
+      <workItem from="1645555282962" duration="74000" />
+      <workItem from="1645563146335" duration="1009000" />
+      <workItem from="1645639004542" duration="1129000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
