@@ -1,10 +1,9 @@
 <x-layout>
     
     <div class="flex flex-col mt-10">
-        <h1 class="pb-4">View all Cities:</h1>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden shadow-md sm:rounded-lg">
+                <div class="overflow-hidden shadow-md rounded-lg bg-gray-800 ">
                     <table class="min-w-full">
                         <thead class="bg-gray-700">
                             <tr>
@@ -25,10 +24,14 @@
                                     <x-table-body-entry>{{$city->arriving_flights->count()}}</x-table-body-entry>
                                     
                                     <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="#" class="text-blue-500 hover:underline">Edit</a>
+                                        <a href="cities/{{$city->id}}/edit" class="text-blue-500 hover:underline">Edit</a>
                                     </td>
                                     <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="#" class="text-red-600 hover:underline">Delete</a>
+                                        <form method="post" action="cities/{{$city->id}}" >
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type='submit' class="text-red-600 hover:underline">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -36,18 +39,30 @@
                            
                         </tbody>
                     </table>
+                    <div class="ml-16 w-1/2 h-12 pt-2">
+                    {{ $cities->links() }}
+                    </div>
                 </div>
             </div>
         </div>
         <div class="mt-10 bg-slate-400 rounded-xl w-8/12 mx-auto">
-            
-            <h1 class="pt-2 w-min-full h-8 rounded-xl bg-gray-700 text-xs font-medium tracking-wider text-center uppercase text-gray-400">Add a City:</h1>
-            
-            <form class='h-20 '>
-                <label class="mr-8 text-sm font-medium  whitespace-nowrap dark:text-white uppercase">City name:</label>
-                <input class="border border-gray-200 p-2 rounded" type="text" /> 
-                <button class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700" type="submit">Submit</button>
-            </form>
-        </div>
+            <div class="pt-2 w-min-full h-8 rounded-xl bg-gray-700">
+                <h1 class="text-xs font-medium tracking-wider text-center uppercase text-gray-400">Add a City:</h1>
+            </div>
+            <div class=" h-20 my-5">
+                <form method="POST" action="/cities" class="py-5 self-center inline-flex items-baseline">
+                    @csrf
+                    <label class="ml-20 mr-8 text-sm font-medium  whitespace-nowrap text-white uppercase">City name:</label>
+                        <div>
+                        <input required name="name" class="border border-gray-200 p-2 rounded" value="{{old('name')}}" type="text" /> 
+                        @error('name')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                        </div>
+                    
+                    <button class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700" type="submit">Submit</button>
+                </form>
+
+            </div>
     </div>
 </x-layout>

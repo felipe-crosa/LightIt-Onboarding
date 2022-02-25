@@ -23,4 +23,5 @@ Route::get('airlines', function () {
     return view('airlines',['airlines'=>Airline::all()]);
 });
 
-Route::get('city.index', [CityController::class , 'index' ]);
+
+Route::resource('cities',CityController::class)->except('create');
