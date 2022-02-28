@@ -20,7 +20,7 @@
                         <x-table-body-entry>{{ $city->arriving_flights->count() }}</x-table-body-entry>
 
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                            <a href="cities/{{ $city->id }}/edit" class="text-blue-500 hover:underline">Edit</a>
+                            <a href="/cities/{{ $city->id }}/edit" class="text-blue-500 hover:underline">Edit</a>
                         </td>
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                             <form method="post" action="/cities/{{ $city->id }}">
@@ -79,8 +79,8 @@
                             $("#citiesTable tbody").append(`<tr class="border-b bg-gray-800 border-gray-700"> 
                         <x-table-body-entry>${response.id}</x-table-body-entry> 
                         <x-table-body-entry>${response.name}</x-table-body-entry>
-                        <x-table-body-entry>${response.departing_flights.length}</x-table-body-entry>
-                        <x-table-body-entry>${response.arriving_flights.length}</x-table-body-entry> 
+                        <x-table-body-entry>0</x-table-body-entry>
+                        <x-table-body-entry>0</x-table-body-entry> 
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                         <a href="cities/${response.id}/edit" class="text-blue-500 hover:underline">Edit</a>
                         </td>

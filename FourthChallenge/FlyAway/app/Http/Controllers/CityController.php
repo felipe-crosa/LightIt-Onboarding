@@ -22,7 +22,7 @@ class CityController extends Controller
     {
     //validate city 
         $attributes= request()->validate([
-            'name'=>['required','max:255',Rule::unique('cities','name')->ignore($city)]
+            'name'=>['regex:/^[\pL\s\-]+$/u','required','max:255',Rule::unique('cities','name')->ignore($city)]
         ]);
     //Update it
         $city->update($attributes);
@@ -40,8 +40,6 @@ class CityController extends Controller
         ]);
 
         $city=City::create($arguments);
-        $city->departing_flights;
-        $city->arriving_flights;
         return response()->json($city);
     }
 

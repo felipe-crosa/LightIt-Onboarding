@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CityController;
 use App\Models\Airline;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\AirlineController;
 
 
 /*
@@ -19,11 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index-flights',['flights'=>Airline::all()]);
 });
-Route::get('airlines', function () {
-    return view('airlines',['airlines'=>Airline::all()]);
-});
-
 
 Route::resource('cities',CityController::class)->except(['create','show'])->names([
     'store'=>'city.add'
 ]);
+
+Route::resource('airlines',AirlineController::class)->except(['create','show']);
