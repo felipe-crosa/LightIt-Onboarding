@@ -39,9 +39,10 @@ class CityController extends Controller
             'name'=>'required|regex:/^[\pL\s\-]+$/u|unique:cities,name|max:255'
         ]);
 
-        City::create($arguments);
-
-        return back()->with('success', 'City Added!')->withInput(['name']);
+        $city=City::create($arguments);
+        $city->departing_flights;
+        $city->arriving_flights;
+        return response()->json($city);
     }
 
     public function destroy(City $city){
