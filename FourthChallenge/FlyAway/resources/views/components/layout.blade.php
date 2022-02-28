@@ -7,7 +7,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Laravel</title>
-    
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -29,9 +32,9 @@
             </div>
 
             <div class="mt-8 md:mt-0 flex items-center">
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='flights'>Flights</a>
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='airlines'>Airlines</a>
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='cities'>Cities</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='/flights'>Flights</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='/airlines'>Airlines</a>
+                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='/cities'>Cities</a>
             </div>
 
 
