@@ -83,12 +83,24 @@
                         <x-table-body-entry>${response.name}</x-table-body-entry>
                         <x-table-body-entry>${response.departing_flights.length}</x-table-body-entry>
                         <x-table-body-entry>${response.arriving_flights.length}</x-table-body-entry> 
+                        <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                        <a href="cities/${response.id}/edit" class="text-blue-500 hover:underline">Edit</a>
+                        </td>
+                        <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                            <form method="post" action="/cities/${response.id}" >
+                                @csrf
+                                @method('DELETE')
+                                <button type='submit' class="text-red-600 hover:underline">Delete</button>
+                            </form>
+                        </td>
                         </tr>`)
                         $("#addCityForm")[0].reset()
                     }
                     
                 });
             });
+
+            
         });
        
     </script>
