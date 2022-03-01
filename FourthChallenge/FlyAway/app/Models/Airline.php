@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Airline extends Model
 {
     use HasFactory;
-    protected $guarded=[];
-    
-    public function flights(){
+
+    protected $guarded = [];
+
+    public function flights()
+    {
         return $this->hasMany(Flight::class);
     }
-
-
 }
-
-

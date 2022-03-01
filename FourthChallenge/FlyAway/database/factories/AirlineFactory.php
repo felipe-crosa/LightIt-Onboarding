@@ -18,7 +18,7 @@ class AirlineFactory extends Factory
     {
         return [
             'name'=>$this->faker->company(),
-            'description'=>$this->faker->text()
+            'description'=>$this->faker->text(),
         ];
     }
 }
