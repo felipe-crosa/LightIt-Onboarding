@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('cities', CityController::class)->except(['create', 'show'])->names([
-    'store'=>'city.add',
+    'store'=>'city.store',
+    'destroy'=>'city.delete'
 ]);
 
 Route::resource('airlines', AirlineController::class)->except(['create', 'show']);

@@ -13,7 +13,7 @@
 
             <x-slot name='body'>
                 @foreach ($cities as $city)
-                    <tr class="border-b bg-gray-800 border-gray-700">
+                    <tr id="table-row-{{$city->id}}"class="border-b bg-gray-800 border-gray-700">
                         <x-table-body-entry>{{ $city->id }}</x-table-body-entry>
                         <x-table-body-entry>{{ $city->name }}</x-table-body-entry>
                         <x-table-body-entry>{{ $city->departing_flights->count() }}</x-table-body-entry>
@@ -23,10 +23,10 @@
                             <a href="/cities/{{ $city->id }}/edit" class="text-blue-500 hover:underline">Edit</a>
                         </td>
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                            <form method="post" action="/cities/{{ $city->id }}">
+                            <form id="deleteForm" method="post" action="/cities/{{ $city->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type='submit' class="text-red-600 hover:underline">Delete</button>
+                                <button value="{{$city->id}}" type='submit' class="deleteButton text-red-600 hover:underline">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -67,16 +67,22 @@
             $(document).ready(function() {
                 $('#addCityForm').submit(function(e) {
                     e.preventDefault();
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    console.log($('meta[name="csrf-token"]').attr('content'))
                     $.ajax({
                         type: "POST",
-                        url: "{{ route('city.add') }}",
-
+                        url: "{{ route('city.store') }}",
+                        
                         data: {
                             name: $("#name").val(),
-                            _token: $("input[name=_token]").val()
+                           
                         },
                         success: function(response) {
-                            $("#citiesTable tbody").append(`<tr class="border-b bg-gray-800 border-gray-700"> 
+                            $("#citiesTable tbody").prepend(`<tr class="border-b bg-gray-800 border-gray-700"> 
                         <x-table-body-entry>${response.id}</x-table-body-entry> 
                         <x-table-body-entry>${response.name}</x-table-body-entry>
                         <x-table-body-entry>0</x-table-body-entry>
@@ -96,6 +102,26 @@
                         }
 
                     });
+                });
+                $(document).on('click','.deleteButton',function(e){
+                    
+                    e.preventDefault();
+                    let city_id= $(this).val();
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    
+                    $.ajax({
+                        type: "DELETE",
+                        url : "/cities/"+city_id,  
+                        success: function(response){
+                            $("#table-row-"+city_id).remove()
+                        }
+
+                    
+                    })
                 });
 
 
