@@ -11,7 +11,7 @@
                         @method("PATCH")
                         <label class="ml-4 mr-8 text-sm font-medium  whitespace-nowrap text-white uppercase">City name:</label>
                             <div>
-                            <input required name="name" class="border border-gray-200 p-2 rounded" value="{{$city->name}}" type="text" /> 
+                            <input required name="name" class="border border-gray-200 p-2 rounded" value="{{old('name',$city->name)}}" type="text" /> 
                             @error('name')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
