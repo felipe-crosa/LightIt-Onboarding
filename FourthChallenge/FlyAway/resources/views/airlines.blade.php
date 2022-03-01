@@ -62,7 +62,7 @@
 
                     <input id="description" required name="description" class="border border-gray-200 p-2 rounded"
                         value="{{ old('description') }}" type="text" />
-                    @error('name')
+                    @error('description')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>

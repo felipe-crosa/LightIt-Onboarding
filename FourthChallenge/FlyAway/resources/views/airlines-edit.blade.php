@@ -15,7 +15,7 @@
                         name:</label>
 
                     <input id="name" required name="name" class="border border-gray-200 p-2 rounded"
-                        value="{{$airline->name}}" type="text" />
+                        value="{{old('name',$airline->name)}}" type="text" />
                     @error('name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -25,8 +25,8 @@
                         description:</label>
 
                     <input id="description" required name="description" class="border border-gray-200 p-2 rounded"
-                        value="{{$airline->description}}" type="text" />
-                    @error('name')
+                        value="{{old('description',$airline->description)}}" type="text" />
+                    @error('description')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
