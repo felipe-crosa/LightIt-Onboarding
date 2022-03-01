@@ -38,7 +38,7 @@ class AirlineController extends Controller
 
     public function store(){
         $arguments=request()->validate([
-            'name'=>'required|unique:cities,name|max:255',
+            'name'=>'required|unique:airlines,name|max:255',
             'description'=>'required'
         ]);
 
