@@ -23,7 +23,7 @@ class AirlineController extends Controller
 
         $airline->update($attributes);
 
-        return response()->with('success', 'Airline Updated!');
+        return back()->with('success', 'Airline Updated!');
     }
 
     public function edit(Airline $airline)
