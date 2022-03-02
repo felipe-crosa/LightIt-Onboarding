@@ -1,7 +1,7 @@
 <x-layout>
 
     <div class="flex flex-col mt-10">
-        <x-table :id="citiesTable">
+        <x-table :id="'citiesTable'">
             <x-slot name='headers'>
                 <x-table-heading>ID</x-table-heading>
                 <x-table-heading>Name</x-table-heading>
