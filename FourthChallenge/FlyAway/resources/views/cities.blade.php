@@ -84,7 +84,7 @@
                         success: function(response) {
                            
                             $("#errors").html("");
-                            $("#citiesTable tbody").prepend(`<tr class="border-b bg-gray-800 border-gray-700"> 
+                            $("#citiesTable tbody").prepend(`<tr id="table-row-${response.id}" class="border-b bg-gray-800 border-gray-700"> 
                         <x-table-body-entry>${response.id}</x-table-body-entry> 
                         <x-table-body-entry>${response.name}</x-table-body-entry>
                         <x-table-body-entry>0</x-table-body-entry>
@@ -93,14 +93,14 @@
                                         <a href="cities/${response.id}/edit" class="text-blue-500 hover:underline">Edit</a>
                         </td>
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                            <form method="post" action="/cities/${response.id}" >
+                            <form id="deleteForm" method="post" action="/cities/${response.id}">
                                 @csrf
                                 @method('DELETE')
-                                <button type='submit' class="text-red-600 hover:underline">Delete</button>
+                                <button value="${response.id}" type='submit' class="deleteButton text-red-600 hover:underline">Delete</button>
                             </form>
                         </td>
                         </tr>`)
-                            $("#addCityForm")[0].reset()
+                        $("#addCityForm")[0].reset()
                             
                         },
                         error: function(error){
