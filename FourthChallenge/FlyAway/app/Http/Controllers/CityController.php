@@ -23,9 +23,10 @@ class CityController extends Controller
         //dd($attributes);
         //Update it
         $city->update($attributes);
+
         return response()->json($city);
 
-      //  return back()->with('success', 'City Updated!');
+        //  return back()->with('success', 'City Updated!');
     }
 
     public function edit(City $city)
@@ -46,9 +47,6 @@ class CityController extends Controller
 
     public function destroy(City $city)
     {
-       
         $city->delete();
-      
-        
     }
 }
