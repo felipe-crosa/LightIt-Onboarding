@@ -1,5 +1,5 @@
 <x-layout>
-    <x-table>
+    <x-table :id="'airlinesTable'">
         <x-slot name='headers'>
             <x-table-heading>ID</x-table-heading>
             <x-table-heading>Name</x-table-heading>
@@ -72,6 +72,7 @@
                     type="submit">Submit</button>
             </form>
         </div>
+        
     </div>
 
 </x-layout>

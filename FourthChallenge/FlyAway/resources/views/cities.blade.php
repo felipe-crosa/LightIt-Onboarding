@@ -1,7 +1,7 @@
 <x-layout>
 
     <div class="flex flex-col mt-10">
-        <x-table>
+        <x-table :id="citiesTable">
             <x-slot name='headers'>
                 <x-table-heading>ID</x-table-heading>
                 <x-table-heading>Name</x-table-heading>
@@ -72,7 +72,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    console.log($('meta[name="csrf-token"]').attr('content'))
+                   
                     $.ajax({
                         type: "POST",
                         url: "{{ route('city.store') }}",
@@ -82,6 +82,8 @@
                            
                         },
                         success: function(response) {
+                           
+                            $("#errors").html("");
                             $("#citiesTable tbody").prepend(`<tr class="border-b bg-gray-800 border-gray-700"> 
                         <x-table-body-entry>${response.id}</x-table-body-entry> 
                         <x-table-body-entry>${response.name}</x-table-body-entry>
@@ -99,6 +101,13 @@
                         </td>
                         </tr>`)
                             $("#addCityForm")[0].reset()
+                            
+                        },
+                        error: function(error){
+                            $("#errors").html("");
+                            
+                            $("#errors").prepend(`<x-alert>${error.responseJSON.message}</x-alert>`);
+                            
                         }
 
                     });
@@ -127,4 +136,6 @@
 
             });
         </script>
+        <div id="errors"></div>
+    </div>
 </x-layout>
