@@ -27,4 +27,6 @@ Route::resource('cities', CityController::class)->except(['create', 'show'])->na
 
 Route::resource('airlines', AirlineController::class)->except(['create', 'show'])->names([
     'store'=>'airline.store',
+    'index'=>'airline.index',
+
 ]);

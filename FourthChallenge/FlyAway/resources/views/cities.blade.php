@@ -63,6 +63,7 @@
                 </form>
             </div>
         </div>
+        <div id="errors"></div>
         <script>
             $(document).ready(function() {
                 $('#addCityForm').submit(function(e) {
@@ -136,6 +137,6 @@
 
             });
         </script>
-        <div id="errors"></div>
+       
     </div>
 </x-layout>
