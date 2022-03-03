@@ -130,6 +130,8 @@
                     </td>
                 </tr>`) + tBody.innerHTML
                             document.getElementById('errors').innerHTML = ''
+                            document.getElementById('name').value=""
+                            document.getElementById('description').value=""
                         } else {
                             response = await response.json()
                             let errors = document.getElementById('errors')
