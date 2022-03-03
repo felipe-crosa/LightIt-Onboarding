@@ -38,7 +38,7 @@ class AirlineController extends Controller
             'description'=>'required',
         ]);
 
-        $airline= Airline::create($arguments);
+        $airline = Airline::create($arguments);
 
         return response()->json($airline);
     }
