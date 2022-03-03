@@ -20,10 +20,13 @@ class CityController extends Controller
         $attributes = request()->validate([
             'name'=>['regex:/^[\pL\s\-]+$/u', 'required', 'max:255', Rule::unique('cities', 'name')->ignore($city)],
         ]);
+        //dd($attributes);
         //Update it
         $city->update($attributes);
 
-        return back()->with('success', 'City Updated!');
+        return response()->json($city);
+
+        //  return back()->with('success', 'City Updated!');
     }
 
     public function edit(City $city)
@@ -46,6 +49,6 @@ class CityController extends Controller
     {
         $city->delete();
 
-        return back()->with('success', 'City deleted!');
+        return response()->json();
     }
 }

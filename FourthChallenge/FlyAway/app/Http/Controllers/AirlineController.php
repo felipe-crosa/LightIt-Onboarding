@@ -23,7 +23,7 @@ class AirlineController extends Controller
 
         $airline->update($attributes);
 
-        return back()->with('success', 'Airline Updated!');
+        return response()->json();
     }
 
     public function edit(Airline $airline)
@@ -38,15 +38,15 @@ class AirlineController extends Controller
             'description'=>'required',
         ]);
 
-        Airline::create($arguments);
+        $airline = Airline::create($arguments);
 
-        return back()->with('success', 'Airline Added');
+        return response()->json($airline);
     }
 
     public function destroy(Airline $airline)
     {
         $airline->delete();
 
-        return back()->with('success', 'Airline deleted!');
+        return response()->json();
     }
 }
