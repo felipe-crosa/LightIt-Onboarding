@@ -40,9 +40,27 @@
                         class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700"
                         type="submit">Edit</button>
                 </form>
+                <div class="flex">
+                    <label class="w-40 ml-4 mr-8 text-sm font-medium  whitespace-nowrap text-white uppercase">Available
+                        Cities:</label>
+                    <select class="rounded" id="selectCities" name="Cities" title="Cities">
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                    <button id="selectCityButton"
+                        class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700">
+                        Select </button>
+                </div>
+                <div id="selectedCities" class="grid grid-cols-3">
+                    @foreach ($airline->cities as $city)
+                        <x-city-tag :city_id='"{{ $city->id }}"'>{{ $city->name }}</x-city-tag>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
+
 
     <x-leave-popup :href="route('airline.index')">
         Airline has been edited!
@@ -50,6 +68,8 @@
     </x-leave-popup>
 
     <script>
+        reloadCancelCityButtons()
+        var cities = {{ $airline->cities->pluck('id')->toJson() }}
         document.getElementById('editButton').addEventListener('click', function(event) {
             event.preventDefault();
             editAirline()
@@ -65,8 +85,8 @@
                 },
                 body: JSON.stringify({
                     name: document.getElementById('name').value,
-                    description: document.getElementById('description').value
-
+                    description: document.getElementById('description').value,
+                    cities:cities
                 })
 
             });
@@ -78,13 +98,49 @@
             } else {
                 response = await response.json()
                 let errors = document.getElementById('errors')
-                
+
                 errors.innerHTML = `<x-alert>${response.message}</x-alert>`
             }
 
 
 
 
+
+        }
+        document.getElementById('selectCityButton').addEventListener('click', function(event) {
+            let select = document.getElementById('selectCities')
+            let city_id = select.value
+
+            let text = select.options[select.selectedIndex].text
+            if (!cities.includes(city_id)) {
+                document.getElementById('selectedCities').innerHTML +=
+                    `<x-city-tag :city_id="'${city_id}'">${text}</x-city-tag>`
+                cities.push(city_id)
+
+                reloadCancelCityButtons()
+            }
+
+
+
+            //  
+
+        })
+
+        function reloadCancelCityButtons() {
+            let city_tags = document.getElementsByClassName('cancelCityButton')
+            for (let i = 0; i < city_tags.length; i++) {
+                city_tags[i].addEventListener('click', function(event) {
+
+                    id = event.target.parentElement.value
+
+                    let tag = document.getElementById('city-tag-' + id)
+
+                    tag.remove()
+                    cities.splice(cities.indexOf(id), 1)
+
+
+                })
+            }
 
         }
     </script>
