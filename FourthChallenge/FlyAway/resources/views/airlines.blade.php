@@ -216,9 +216,10 @@
                     let city_tags=document.getElementsByClassName('cancelCityButton')
                     for(let i=0;i<city_tags.length;i++){
                         city_tags[i].addEventListener('click',function(event){
+
                             
-                            id=event.target.parentElement.value
-                        
+                            id=event.currentTarget.value
+                            
                             let tag=document.getElementById('city-tag-'+id)
                            
                             tag.remove()
