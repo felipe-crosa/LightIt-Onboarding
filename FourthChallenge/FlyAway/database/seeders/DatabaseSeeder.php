@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Airline;
+use App\Models\City;
 use App\Models\Flight;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         Flight::factory(5)->create();
+
+        $cities = City::factory(5)->create();
+        $airline = Airline::factory(5)->create();
     }
 }

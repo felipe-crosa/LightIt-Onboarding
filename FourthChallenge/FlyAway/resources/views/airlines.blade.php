@@ -69,15 +69,38 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
+                   
                 </div>
+               
                 <button
                     class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700"
                     type="submit">Submit</button>
             </form>
+            <div class="flex">
+                <label
+                class="w-40 ml-4 mr-8 text-sm font-medium  whitespace-nowrap text-white uppercase">Available
+                Cities:</label>
+                <select class="rounded" id="selectCities" name="Cities" title="Cities">
+                    @foreach ($cities as $city)
+                        <option value="{{$city->id}}">{{$city->name}}</option>
+                    @endforeach
+                </select>
+                <button id="selectCityButton" class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700"> Select </button>
+            </div>
+            <div id="selectedCities" class="grid grid-cols-3">
+
+            </div>
         </div>
         <div id="errors"></div>
+
+
+
+
+
+
         <script>
-                function reloadDeleteButtons() {
+            var cities=[]
+                function reloadDeleteAirlineButtons() {
                     let deleteButtons = document.getElementsByClassName('deleteButton');
                     for (let i = 0; i < deleteButtons.length; i++) {
                         deleteButtons[i].addEventListener('click', function(event) {
@@ -87,7 +110,7 @@
                     }
 
                 }
-                reloadDeleteButtons();
+                reloadDeleteAirlineButtons();
                 document.getElementById("addAirlineForm").addEventListener("submit", function(event) {
 
                     event.preventDefault();
@@ -103,12 +126,14 @@
                             },
                             body: JSON.stringify({
                                 name: document.getElementById('name').value,
-                                description: document.getElementById('description').value
-
+                                description: document.getElementById('description').value,
+                                cities:cities
                             })
                         });
                         if (response.ok) {
+                        
                             response = await response.json()
+                            console.log(response)
                             let table = document.getElementById('airlinesTable');
                             let tBody = table.getElementsByTagName('tbody')[0];
                             tBody.innerHTML = (`<tr id="table-row-${ response.id }" class="border-b bg-gray-800 border-gray-700">
@@ -142,7 +167,8 @@
 
 
 
-                    reloadDeleteButtons()
+                    reloadDeleteAirlineButtons()
+                    document.getElementById('selectedCities').innerHTML=""
                     }
                     
 
@@ -168,6 +194,42 @@
 
                 }
 
+                document.getElementById('selectCityButton').addEventListener('click',function(event){
+                    let select=document.getElementById('selectCities')
+                    let city_id=select.value
+                    
+                    let text=select.options[select.selectedIndex].text
+                    if(!cities.includes(city_id)){
+                        document.getElementById('selectedCities').innerHTML+=`<x-city-tag :city_id="'${city_id}'">${text}</x-city-tag>`
+                        cities.push(city_id)
+                        
+                        reloadCancelCityButtons()
+                    }
+                    
+                    
+                    
+                  //  
+
+                })
+
+                function reloadCancelCityButtons(){
+                    let city_tags=document.getElementsByClassName('cancelCityButton')
+                    for(let i=0;i<city_tags.length;i++){
+                        city_tags[i].addEventListener('click',function(event){
+
+                            
+                            id=event.currentTarget.value
+                            
+                            let tag=document.getElementById('city-tag-'+id)
+                           
+                            tag.remove()
+                            cities.splice(cities.indexOf(id),1)
+                           
+
+                        })
+                    }
+
+                }
                 
             
         </script>
