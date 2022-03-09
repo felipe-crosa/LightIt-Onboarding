@@ -90,9 +90,4 @@
         </div>
     </div>
 </x-layout>
-<script>
-    import TableComponent from "../js/components/TableComponent";
-    export default {
-        components: {TableComponent}
-    }
-</script>
+
