@@ -1,5 +1,5 @@
 <x-layout>
-    
+    <table-component></table-component>
     <div class="flex flex-col mt-10">
         <h1 class="pb-4">View all Flights:</h1>
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -90,3 +90,9 @@
         </div>
     </div>
 </x-layout>
+<script>
+    import TableComponent from "../js/components/TableComponent";
+    export default {
+        components: {TableComponent}
+    }
+</script>

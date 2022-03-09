@@ -22,7 +22,7 @@
 
 
 
-<body style="font-family: Open Sans, sans-serif" class="bg-slate-300">
+<body id="app" style="font-family: Open Sans, sans-serif" class="bg-slate-300">
     <section class="px-3 py-4">
         <nav class="mt-0 md:flex md:justify-between md:items-center bg-slate-600 border border-black border-opacity-5 rounded-xl text-center py-6 px-10">
             <div>
@@ -55,6 +55,7 @@
     </section>
 
     <x-flash/>
+    <script src="/js/app.js"> </script>
 </body>
 
 </html>
