@@ -8,9 +8,29 @@ require('./bootstrap');
 
 import {createApp} from "vue";
 import TableComponent from "./components/TableComponent";
+import FlightForm from "./components/FlightForm";
+
+
 createApp({
+    data(){
+        return{
+            "showDelete":false,
+            "showEdit":false
+        }
+
+    },
     components:{
         TableComponent,
+        FlightForm,
+
+    },
+    methods:{
+        deleteFlight:function(id){
+            this.showDelete=!this.showDelete
+        },
+        editFlight:function(flight){
+            this.showEdit=!this.showEdit
+        },
     }
 
 }).mount('#app')

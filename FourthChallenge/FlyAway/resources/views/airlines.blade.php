@@ -69,9 +69,9 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
-                   
+
                 </div>
-               
+
                 <button
                     class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700"
                     type="submit">Submit</button>
@@ -131,7 +131,7 @@
                             })
                         });
                         if (response.ok) {
-                        
+
                             response = await response.json()
                             console.log(response)
                             let table = document.getElementById('airlinesTable');
@@ -157,6 +157,9 @@
                             document.getElementById('errors').innerHTML = ''
                             document.getElementById('name').value=""
                             document.getElementById('description').value=""
+                            reloadDeleteAirlineButtons()
+                            document.getElementById('selectedCities').innerHTML="";
+                            cities=[]
                         } else {
                             response = await response.json()
                             let errors = document.getElementById('errors')
@@ -167,10 +170,9 @@
 
 
 
-                    reloadDeleteAirlineButtons()
-                    document.getElementById('selectedCities').innerHTML=""
+
                     }
-                    
+
 
                 })
 
@@ -197,18 +199,18 @@
                 document.getElementById('selectCityButton').addEventListener('click',function(event){
                     let select=document.getElementById('selectCities')
                     let city_id=select.value
-                    
+
                     let text=select.options[select.selectedIndex].text
                     if(!cities.includes(city_id)){
                         document.getElementById('selectedCities').innerHTML+=`<x-city-tag :city_id="'${city_id}'">${text}</x-city-tag>`
                         cities.push(city_id)
-                        
+
                         reloadCancelCityButtons()
                     }
-                    
-                    
-                    
-                  //  
+
+
+
+                  //
 
                 })
 
@@ -217,21 +219,21 @@
                     for(let i=0;i<city_tags.length;i++){
                         city_tags[i].addEventListener('click',function(event){
 
-                            
+
                             id=event.currentTarget.value
-                            
+
                             let tag=document.getElementById('city-tag-'+id)
-                           
+
                             tag.remove()
                             cities.splice(cities.indexOf(id),1)
-                           
+
 
                         })
                     }
 
                 }
-                
-            
+
+
         </script>
 
     </div>
