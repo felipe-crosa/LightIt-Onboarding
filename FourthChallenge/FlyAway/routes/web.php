@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\CityController;
-use App\Models\Airline;
 use App\Models\Flight;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/flights', function () {
-    return view('flights', ['flights'=>Flight::with('arrival','departure','airline')->get()]);
+    return view('flights', ['flights'=>Flight::with('arrival', 'departure', 'airline')->get()]);
 });
 
 Route::resource('cities', CityController::class)->except(['create', 'show'])->names([
