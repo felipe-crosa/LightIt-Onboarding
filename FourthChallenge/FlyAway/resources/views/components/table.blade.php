@@ -13,7 +13,7 @@
                 </tbody>
             </table>
             <div class="ml-16 w-1/2 h-12 pt-2">
-             {{$pagination}}
+             {{$pagination ?? ''}}
             </div>
         </div>
     </div>

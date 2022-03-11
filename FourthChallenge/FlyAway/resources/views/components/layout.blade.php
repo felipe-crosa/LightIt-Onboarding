@@ -22,20 +22,20 @@
 
 
 
-<body style="font-family: Open Sans, sans-serif" class="bg-slate-300">
+<body  style="font-family: Open Sans, sans-serif" class="bg-slate-300">
     <section class="px-3 py-4">
         <nav class="mt-0 md:flex md:justify-between md:items-center bg-slate-600 border border-black border-opacity-5 rounded-xl text-center py-6 px-10">
             <div>
-                <a href="/" class="flex">
+                <a href="/flights" class="flex">
                     <img src="/images/plane.svg" alt="" class="mx-auto" style="width: 50px;">
                     <p class="px-3"><strong> FlyAway</strong> </p>
                 </a>
             </div>
 
             <div class="mt-8 md:mt-0 flex items-center">
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='/flights'>Flights</a>
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='/airlines'>Airlines</a>
-                <a class="{{ request()->is('register') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='/cities'>Cities</a>
+                <a class="{{ request()->is('flights') ? 'font-semibold' : '' }} font-medium text-black hover:text-gray-400" href='/flights'>Flights</a>
+                <a class="{{ request()->is('airlines') ? 'font-semibold' : '' }} ml-14 font-medium text-black hover:text-gray-400" href='/airlines'>Airlines</a>
+                <a class="{{ request()->is('cities') ? 'font-semibold' : '' }} mx-14 font-medium text-black hover:text-gray-400" href='/cities'>Cities</a>
             </div>
 
 
@@ -55,6 +55,7 @@
     </section>
 
     <x-flash/>
+
 </body>
 
 </html>
