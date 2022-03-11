@@ -39,7 +39,7 @@
                                 {{flight.arrival_date}}
                             </table-entry>
                             <table-entry>
-                                <a @click.prevent="$emit('editFlight',flight)" href="/flights/{{flight.id}}/edit" class="text-blue-500 hover:underline">Edit</a>
+                                <a @click.prevent="$emit('editFlight',flight.id)" href="/flights/{{flight.id}}/edit" class="text-blue-500 hover:underline">Edit</a>
                             </table-entry>
                             <table-entry>
                                 <form id="deleteForm" method="post" action="/flights/{{flight.id}}">
@@ -60,8 +60,9 @@
     import TableEntry from "./TableEntry";
     import TableHeading from "./TableHeading";
     export default {
-        components: {TableHeading, TableEntry},
         props:['flightsCollection'],
+        components: {TableHeading, TableEntry},
+
         data(){
             return {
 

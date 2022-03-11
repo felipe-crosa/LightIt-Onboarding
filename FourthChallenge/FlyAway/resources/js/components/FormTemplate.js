@@ -10,10 +10,17 @@ export default class Form{
 
     submit(requestType,url){
         //create a promise for this request
-        axios[requestType](url,this.data)
+        axios[requestType](url,data())
             .catch(error=>this.errors.set(error.response.data))
 
 
+    }
+    data(){
+        let data={}
+        for(let field of this.data){
+            data[field]=this[field]
+        }
+        return data
     }
     reset(){
         for(let field of this.data){

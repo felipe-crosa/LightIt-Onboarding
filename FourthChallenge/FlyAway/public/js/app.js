@@ -22578,39 +22578,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _FormTemplate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormTemplate */ "./resources/js/components/FormTemplate.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Form",
-  props: ['flight'],
-  data: function data() {
-    return {
+  props: ['flight_id'],
+  setup: function setup() {
+    var state = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
       form: new _FormTemplate__WEBPACK_IMPORTED_MODULE_0__["default"]({
         airline_id: '',
         departure_id: '',
         arrival_id: '',
         departure_date: '',
         arrival_date: ''
-      }),
-      minDate: ""
+      })
+    });
+
+    function submit(type, url) {
+      url = '/flights';
+      type = 'post';
+      state.post.sumbit(type, url);
+    }
+
+    return {
+      state: state,
+      submit: submit
     };
   },
-  functions: {
-    sumbit: function sumbit(type, url) {
-      axios[type]();
-    }
-  },
-  mounted: function mounted() {
-    if (this.flight) {
-      var propFlight = JSON.parse(this.flight);
-      var arriving_date = propFlight.arrival_date.replace(" ", 'T');
-      var departing_date = propFlight.departure_date.replace(" ", 'T');
-      this.form = new _FormTemplate__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        airline_id: propFlight.airline_id,
-        departure_id: propFlight.departure_id,
-        arrival_id: propFlight.arrival_id,
-        departure_date: departing_date,
-        arrival_date: arriving_date
-      });
+  watch: {
+    flight_id: function flight_id(newVal, oldVal) {
+      //axios request to get flight with new id
+      console.log("Flight id changed from " + oldVal + " to " + newVal);
     }
   }
 });
@@ -22633,11 +22632,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['flightsCollection'],
   components: {
     TableHeading: _TableHeading__WEBPACK_IMPORTED_MODULE_1__["default"],
     TableEntry: _TableEntry__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  props: ['flightsCollection'],
   data: function data() {
     return {};
   },
@@ -22688,6 +22687,65 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/deleteFlightForm.vue?vue&type=script&lang=js":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/deleteFlightForm.vue?vue&type=script&lang=js ***!
+  \**********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['flight_id'],
+  name: "deleteFlightForm",
+  setup: function setup(props) {
+    var state = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      id: ''
+    });
+
+    function deletingFlight() {
+      console.log('deleting ' + state.id);
+    }
+
+    return {
+      state: state,
+      deletingFlight: deletingFlight
+    };
+  },
+  watch: {
+    flight_id: function flight_id(newVal, oldVal) {
+      //axios request to get flight with new id
+      this.state.id = newVal;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modalComponent.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modalComponent.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "modalComponent",
+  mounted: function mounted() {//console.log(this.flight_id)
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FlightForm.vue?vue&type=template&id=73d3a002":
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/FlightForm.vue?vue&type=template&id=73d3a002 ***!
@@ -22711,8 +22769,7 @@ var _hoisted_2 = {
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
-  "for": "flightAirline"
+  "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
 }, " Airline ")], -1
 /* HOISTED */
 );
@@ -22741,10 +22798,14 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_8 = [_hoisted_5, _hoisted_6, _hoisted_7];
 var _hoisted_9 = {
+  "class": "md:w-2/3"
+};
+var _hoisted_10 = ["textContent"];
+var _hoisted_11 = {
   "class": "md:flex md:items-center mb-6"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
@@ -22753,26 +22814,13 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_11 = {
+var _hoisted_13 = {
   "class": "md:w-2/3"
 };
-var _hoisted_12 = {
-  "class": "md:flex md:items-center mb-6"
-};
-
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "md:w-1/3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
-  "for": "DepartingDate"
-}, " Departure Date ")], -1
-/* HOISTED */
-);
-
 var _hoisted_14 = {
   "class": "md:w-2/3"
 };
-var _hoisted_15 = ["max"];
+var _hoisted_15 = ["textContent"];
 var _hoisted_16 = {
   "class": "md:flex md:items-center mb-6"
 };
@@ -22781,19 +22829,44 @@ var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
-  "for": "ArrivingCity"
-}, " Arrival ")], -1
+  "for": "DepartingDate"
+}, " Departure Date ")], -1
 /* HOISTED */
 );
 
 var _hoisted_18 = {
   "class": "md:w-2/3"
 };
-var _hoisted_19 = {
+var _hoisted_19 = ["max"];
+var _hoisted_20 = {
+  "class": "md:w-2/3"
+};
+var _hoisted_21 = ["textContent"];
+var _hoisted_22 = {
   "class": "md:flex md:items-center mb-6"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "md:w-1/3"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
+  "for": "ArrivingCity"
+}, " Arrival ")], -1
+/* HOISTED */
+);
+
+var _hoisted_24 = {
+  "class": "md:w-2/3"
+};
+var _hoisted_25 = {
+  "class": "md:w-2/3"
+};
+var _hoisted_26 = ["textContent"];
+var _hoisted_27 = {
+  "class": "md:flex md:items-center mb-6"
+};
+
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:w-1/3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4",
@@ -22802,34 +22875,42 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_21 = {
+var _hoisted_29 = {
   "class": "md:w-2/3"
 };
-var _hoisted_22 = ["min"];
-
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "md:flex md:items-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "md:w-1/3"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_30 = ["min"];
+var _hoisted_31 = {
   "class": "md:w-2/3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "bg-gray-600 uppercase hover:bg-gray-700 shadow focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded",
-  type: "button"
-}, "Submit ")])], -1
+};
+var _hoisted_32 = ["textContent"];
+var _hoisted_33 = {
+  "class": "md:flex md:items-center"
+};
+
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "md:w-1/3"
+}, null, -1
 /* HOISTED */
 );
 
+var _hoisted_35 = {
+  "class": "md:w-2/3"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.form.airline_id = $event;
+      return $setup.state.form.airline_id = $event;
     })
   }, _hoisted_8, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.form.airline_id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<input v-model=\"form.airline_id\" class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"flightAirline\" type=\"text\" >")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.state.form.airline_id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("<input v-model=\"form.airline_id\" class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"flightAirline\" type=\"text\" >")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [$setup.state.form.errors.has('airline_id') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    key: 0,
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.form.errors.get('airline_id'))
+  }, null, 8
+  /* PROPS */
+  , _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.form.departure_id = $event;
+      return $setup.state.form.departure_id = $event;
     }),
     "class": "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
     id: "DepartingCity",
@@ -22837,19 +22918,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Paris"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.departure_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.form.departure_id]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [$setup.state.form.errors.has('departure_id') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    key: 0,
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.form.errors.get('departure_id'))
+  }, null, 8
+  /* PROPS */
+  , _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
     id: "DepartingDate",
     type: "datetime-local",
-    max: $data.form.arrival_date,
+    max: $setup.state.form.arrival_date,
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.form.departure_date = $event;
+      return $setup.state.form.departure_date = $event;
     })
   }, null, 8
   /* PROPS */
-  , _hoisted_15), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.departure_date]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  , _hoisted_19), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.form.departure_date]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$setup.state.form.errors.has('departure_date') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    key: 0,
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.form.errors.get('departure_date'))
+  }, null, 8
+  /* PROPS */
+  , _hoisted_21)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.form.arrival_id = $event;
+      return $setup.state.form.arrival_id = $event;
     }),
     "class": "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
     id: "ArrivingCity",
@@ -22857,17 +22948,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Miami"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.arrival_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.form.arrival_id]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [$setup.state.form.errors.has('arrival_id') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    key: 0,
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.form.errors.get('arrival_id'))
+  }, null, 8
+  /* PROPS */
+  , _hoisted_26)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500",
     id: "ArrivingDate",
     type: "datetime-local",
-    min: $data.form.departure_date,
+    min: $setup.state.form.departure_date,
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $data.form.arrival_date = $event;
+      return $setup.state.form.arrival_date = $event;
     })
   }, null, 8
   /* PROPS */
-  , _hoisted_22), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.arrival_date]])])]), _hoisted_23]);
+  , _hoisted_30), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.state.form.arrival_date]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [$setup.state.form.errors.has('arrival_date') ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    key: 0,
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.state.form.errors.get('arrival_date'))
+  }, null, 8
+  /* PROPS */
+  , _hoisted_32)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[5] || (_cache[5] = function () {
+      return $setup.submit && $setup.submit.apply($setup, arguments);
+    }),
+    "class": "bg-gray-600 uppercase hover:bg-gray-700 shadow focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded",
+    type: "button"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.flight_id ? "Edit" : "Submit"), 1
+  /* TEXT */
+  )])])]);
 }
 
 /***/ }),
@@ -23038,7 +23147,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
         return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-            return _ctx.$emit('editFlight', flight);
+            return _ctx.$emit('editFlight', flight.id);
           }, ["prevent"]),
           href: "/flights/{{flight.id}}/edit",
           "class": "text-blue-500 hover:underline"
@@ -23122,6 +23231,76 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/deleteFlightForm.vue?vue&type=template&id=3db46c2a":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/deleteFlightForm.vue?vue&type=template&id=3db46c2a ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "confirmDeleteButton"
+}, "Are you sure you want to delete this flight?", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $setup.deletingFlight && $setup.deletingFlight.apply($setup, arguments);
+    }),
+    "class": "ml-20 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
+    id: "confirmDeleteButton"
+  }, "Delete")], 64
+  /* STABLE_FRAGMENT */
+  );
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modalComponent.vue?vue&type=template&id=6ca5bbdb":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modalComponent.vue?vue&type=template&id=6ca5bbdb ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  id: "modal",
+  "class": "fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4"
+};
+var _hoisted_2 = {
+  "class": "relative top-40 mx-auto shadow-lg rounded-md bg-white max-w-md"
+};
+var _hoisted_3 = {
+  "class": "flex justify-between items-center bg-green-500 text-white text-xl rounded-t-md px-4 py-2"
+};
+var _hoisted_4 = {
+  "class": "min-h-fit overflow-y-scroll p-4"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return _ctx.$emit('close-modal');
+    })
+  }, "x")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal body "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])])]);
+}
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -23201,25 +23380,46 @@ var Form = /*#__PURE__*/function () {
       var _this = this;
 
       //create a promise for this request
-      axios[requestType](url, this.data)["catch"](function (error) {
+      axios[requestType](url, data())["catch"](function (error) {
         return _this.errors.set(error.response.data);
       });
     }
   }, {
-    key: "reset",
-    value: function reset() {
+    key: "data",
+    value: function data() {
+      var data = {};
+
       var _iterator = _createForOfIteratorHelper(this.data),
           _step;
 
       try {
         for (_iterator.s(); !(_step = _iterator.n()).done;) {
           var field = _step.value;
-          this[field] = '';
+          data[field] = this[field];
         }
       } catch (err) {
         _iterator.e(err);
       } finally {
         _iterator.f();
+      }
+
+      return data;
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      var _iterator2 = _createForOfIteratorHelper(this.data),
+          _step2;
+
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var field = _step2.value;
+          this[field] = '';
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
       }
     }
   }, {
@@ -45650,6 +45850,62 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/deleteFlightForm.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/deleteFlightForm.vue ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _deleteFlightForm_vue_vue_type_template_id_3db46c2a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteFlightForm.vue?vue&type=template&id=3db46c2a */ "./resources/js/components/deleteFlightForm.vue?vue&type=template&id=3db46c2a");
+/* harmony import */ var _deleteFlightForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./deleteFlightForm.vue?vue&type=script&lang=js */ "./resources/js/components/deleteFlightForm.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_felipecrosa_LightIt_Onboarding_FourthChallenge_FlyAway_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_felipecrosa_LightIt_Onboarding_FourthChallenge_FlyAway_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_deleteFlightForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_deleteFlightForm_vue_vue_type_template_id_3db46c2a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/deleteFlightForm.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
+/***/ "./resources/js/components/modalComponent.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/modalComponent.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _modalComponent_vue_vue_type_template_id_6ca5bbdb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modalComponent.vue?vue&type=template&id=6ca5bbdb */ "./resources/js/components/modalComponent.vue?vue&type=template&id=6ca5bbdb");
+/* harmony import */ var _modalComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modalComponent.vue?vue&type=script&lang=js */ "./resources/js/components/modalComponent.vue?vue&type=script&lang=js");
+/* harmony import */ var _Users_felipecrosa_LightIt_Onboarding_FourthChallenge_FlyAway_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_felipecrosa_LightIt_Onboarding_FourthChallenge_FlyAway_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_modalComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_modalComponent_vue_vue_type_template_id_6ca5bbdb__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/modalComponent.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/FlightForm.vue?vue&type=script&lang=js":
 /*!************************************************************************!*\
   !*** ./resources/js/components/FlightForm.vue?vue&type=script&lang=js ***!
@@ -45714,6 +45970,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/deleteFlightForm.vue?vue&type=script&lang=js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/deleteFlightForm.vue?vue&type=script&lang=js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_deleteFlightForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_deleteFlightForm_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./deleteFlightForm.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/deleteFlightForm.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/components/modalComponent.vue?vue&type=script&lang=js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/modalComponent.vue?vue&type=script&lang=js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_modalComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_modalComponent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./modalComponent.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modalComponent.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/FlightForm.vue?vue&type=template&id=73d3a002":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/FlightForm.vue?vue&type=template&id=73d3a002 ***!
@@ -45774,6 +46062,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TableHeading_vue_vue_type_template_id_4371c03f__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TableHeading_vue_vue_type_template_id_4371c03f__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TableHeading.vue?vue&type=template&id=4371c03f */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TableHeading.vue?vue&type=template&id=4371c03f");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/deleteFlightForm.vue?vue&type=template&id=3db46c2a":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/deleteFlightForm.vue?vue&type=template&id=3db46c2a ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_deleteFlightForm_vue_vue_type_template_id_3db46c2a__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_deleteFlightForm_vue_vue_type_template_id_3db46c2a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./deleteFlightForm.vue?vue&type=template&id=3db46c2a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/deleteFlightForm.vue?vue&type=template&id=3db46c2a");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/modalComponent.vue?vue&type=template&id=6ca5bbdb":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/modalComponent.vue?vue&type=template&id=6ca5bbdb ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_modalComponent_vue_vue_type_template_id_6ca5bbdb__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_modalComponent_vue_vue_type_template_id_6ca5bbdb__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./modalComponent.vue?vue&type=template&id=6ca5bbdb */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/modalComponent.vue?vue&type=template&id=6ca5bbdb");
 
 
 /***/ }),
@@ -46099,6 +46419,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _components_TableComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/TableComponent */ "./resources/js/components/TableComponent.vue");
 /* harmony import */ var _components_FlightForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/FlightForm */ "./resources/js/components/FlightForm.vue");
+/* harmony import */ var _components_modalComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/modalComponent */ "./resources/js/components/modalComponent.vue");
+/* harmony import */ var _components_deleteFlightForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/deleteFlightForm */ "./resources/js/components/deleteFlightForm.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -46109,25 +46431,41 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({
   data: function data() {
     return {
       "showDelete": false,
-      "showEdit": false
+      "showEdit": false,
+      "showAdd": false,
+      "edit_flight_id": '',
+      "delete_flight_id": ""
     };
   },
   components: {
+    deleteFlightForm: _components_deleteFlightForm__WEBPACK_IMPORTED_MODULE_4__["default"],
     TableComponent: _components_TableComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
-    FlightForm: _components_FlightForm__WEBPACK_IMPORTED_MODULE_2__["default"]
+    FlightForm: _components_FlightForm__WEBPACK_IMPORTED_MODULE_2__["default"],
+    modalComponent: _components_modalComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   methods: {
     deleteFlight: function deleteFlight(id) {
       this.showDelete = !this.showDelete;
+      this.delete_flight_id = id;
     },
-    editFlight: function editFlight(flight) {
-      this.showEdit = !this.showEdit;
-    }
-  }
+    editFlight: function editFlight(flight_id) {
+      this.edit_flight_id = flight_id;
+      this.showEdit = true;
+    },
+    closeModal: function closeModal() {
+      this.showEdit = false;
+      this.showDelete = false;
+      this.showAdd = false;
+    },
+    prueba: function prueba() {}
+  },
+  computed: {}
 }).mount('#app');
 })();
 
