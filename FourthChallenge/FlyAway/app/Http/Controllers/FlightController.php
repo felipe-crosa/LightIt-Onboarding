@@ -29,7 +29,7 @@ class FlightController extends Controller
 
         $flight->update($attributes);
 
-        $flight->load('airline','departure','arrival');
+        $flight->load('airline', 'departure', 'arrival');
 
         return response()->json($flight);
     }
@@ -45,8 +45,7 @@ class FlightController extends Controller
             ]);
 
         $flight = Flight::create($arguments);
-        $flight->load('airline','departure','arrival');
-
+        $flight->load('airline', 'departure', 'arrival');
 
         return response()->json($flight);
     }
@@ -60,7 +59,8 @@ class FlightController extends Controller
 
     public function show(Flight $flight) :JsonResponse
     {
-        $flight->load('airline.cities','departure','arrival');
+        $flight->load('airline.cities', 'departure', 'arrival');
+
         return response()->json($flight);
     }
 
