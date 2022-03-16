@@ -54,4 +54,9 @@ class AirlineController extends Controller
 
         return response()->json();
     }
+
+    public function all()
+    {
+        return response()->json(Airline::with('cities')->get());
+    }
 }

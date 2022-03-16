@@ -18,7 +18,7 @@
 
                     </thead>
                     <tbody>
-                        <tr v-for="flight in flights">
+                        <tr v-for="flight in flights" id="">
                             <table-entry>
                                 {{flight.id}}
                             </table-entry>
@@ -42,9 +42,9 @@
                                 <a @click.prevent="$emit('editFlight',flight.id)" href="/flights/{{flight.id}}/edit" class="text-blue-500 hover:underline">Edit</a>
                             </table-entry>
                             <table-entry>
-                                <form id="deleteForm" method="post" action="/flights/{{flight.id}}">
-                                    <button @click.prevent="$emit('deleteFlight',flight.id)" :value="flight.id" type='submit' class="deleteButton text-red-600 hover:underline">Delete</button>
-                                </form>
+
+                                <button @click.prevent="$emit('deleteFlight',flight.id)" :value="flight.id" type='submit' class="deleteButton text-red-600 hover:underline">Delete</button>
+
                             </table-entry>
 
                         </tr>
@@ -60,28 +60,63 @@
     import TableEntry from "./TableEntry";
     import TableHeading from "./TableHeading";
     export default {
-        props:['flightsCollection'],
+        props:['deletedflight','addedflight','editedflight'],
         components: {TableHeading, TableEntry},
 
         data(){
             return {
-
-
+                flights:[]
             }
         },
+
         mounted() {
+            axios.get('/flights/all').then(response=>{this.flights=(response.data)})
+        },
 
-        },
-        computed:{
-            flights:function(){
-                return JSON.parse(this.flightsCollection)
-            }
-        },
         methods:{
 
-            editFlight:function(){
-                alert("Editar ")
+            deleteFlight:function(id){
+                this.flights=this.flights.filter((flight)=>flight.id!=id)
             },
+
+            editFlight:function(editedFlight){
+                for(let i=0;i<this.flights.length;i++){
+                    if(this.flights[i].id==editedFlight.id){
+                        this.flights[i]={...editedFlight}
+                        break
+                    }
+                }
+
+
+
+            },
+
+            addFlight:function(addedFlight){
+                console.log(addedFlight)
+                console.log(this.flights[0])
+                this.flights.push(addedFlight);
+            }
+
+
+
+        },
+        watch:{
+            deletedflight:function(newVal,oldVal){
+
+                if(this.deletedflight){
+                    this.deleteFlight(newVal);
+                }
+            },
+            addedflight:function(newVal,oldVal){
+                if(this.addedflight){
+                    this.addFlight(newVal)
+                }
+            },
+            editedflight:function(newVal,oldVal){
+                if(this.editedflight){
+                    this.editFlight(newVal)
+                }
+            }
 
 
         }

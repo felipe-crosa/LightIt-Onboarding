@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "vue-multiselect": "^3.0.0-alpha.2",
         "vue-search-select": "^2.9.5"
     }
 }

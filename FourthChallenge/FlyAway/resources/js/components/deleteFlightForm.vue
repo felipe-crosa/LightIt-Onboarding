@@ -1,6 +1,6 @@
 <template>
     <label for="confirmDeleteButton">Are you sure you want to delete this flight?</label>
-    <button @click="deletingFlight" class="ml-20 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="confirmDeleteButton">Delete</button>
+    <button @click="deletingflight" class="ml-20 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="confirmDeleteButton">Delete</button>
 </template>
 
 <script>
@@ -9,23 +9,22 @@ import {reactive} from "vue";
 export default {
     props:['flight_id'],
     name: "deleteFlightForm",
-    setup(props){
+    emits:['deleted-flight'],
+
+    setup(props,{emit}){
         const state= reactive({
-            id:'',
+
         })
-        function deletingFlight(){
-            console.log('deleting '+state.id)
+        function deletingflight(){
+            axios.delete('flights/'+props.flight_id).then(emit('deleted-flight',props.flight_id))
         }
+
         return {
-            state,deletingFlight
+            state,deletingflight
         }
     },
-    watch:{
-        flight_id:function(newVal,oldVal){
-            //axios request to get flight with new id
-            this.state.id=newVal
-        }
-    }
+
+
 
 
 }

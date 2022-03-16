@@ -16,13 +16,19 @@ import deleteFlightForm from "./components/deleteFlightForm";
 
 
 createApp({
+
     data() {
         return {
+
             "showDelete": false,
             "showEdit": false,
             "showAdd": false,
             "edit_flight_id":'',
-            "delete_flight_id":""
+            "delete_flight_id":"",
+            'deletedFlight':'',
+            'editedFlight':'',
+            'addedFlight':''
+
 
         }
     }
@@ -36,8 +42,10 @@ createApp({
     },
     methods:{
         deleteFlight:function(id){
+
             this.showDelete=!this.showDelete
             this.delete_flight_id=id
+
         },
         editFlight:function(flight_id){
             this.edit_flight_id=flight_id
@@ -45,13 +53,24 @@ createApp({
 
         },
         closeModal:function(){
+
             this.showEdit=false;
             this.showDelete=false;
             this.showAdd=false;
         },
-        prueba:function(){
-
+        added:function(flight){
+            console.log('Sigue vivo')
+           this.addedFlight=flight
+        },
+        edited:function(flight){
+            this.closeModal()
+            this.editedFlight=flight
+        },
+        deleted:function(id){
+            this.closeModal()
+            this.deletedFlight=id
         }
+
     },
     computed:{
 

@@ -3,7 +3,7 @@
         <div class="relative top-40 mx-auto shadow-lg rounded-md bg-white  max-w-md">
 
             <!-- Modal header -->
-            <div class="flex justify-between items-center bg-green-500 text-white text-xl rounded-t-md px-4 py-2">
+            <div class="flex justify-between items-center bg-gray-700  text-white text-xl rounded-t-md px-4 py-2">
                 <h3><slot name="header"></slot> </h3>
                 <button @click="$emit('close-modal')">x</button>
             </div>
@@ -21,9 +21,10 @@
 
 <script>
 export default {
-
+   // emits: ["close-modal",'deletedflight'],
     name: "modalComponent",
     mounted() {
+
         //console.log(this.flight_id)
     }
 }

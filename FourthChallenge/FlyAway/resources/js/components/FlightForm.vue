@@ -1,4 +1,5 @@
 <template>
+
     <form class="w-full max-w-lg">
         <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
@@ -7,12 +8,7 @@
                 </label>
             </div>
             <div class="md:w-2/3">
-                <select v-model="state.form.airline_id">
-                    <option disabled>Select a Airline</option>
-                    <option value="1">LATAM</option>
-                    <option value="2">American</option>
-                </select>
-                <!--<input v-model="form.airline_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="flightAirline" type="text" >-->
+                <VueMultiselect v-model="state.airline"  :options="state.airlines" track-by="id" label="name" model-value="id"></VueMultiselect>
             </div>
             <div class="md:w-2/3">
                 <span v-if="state.form.errors.has('airline_id')" v-text="state.form.errors.get('airline_id')"></span>
@@ -20,12 +16,12 @@
         </div>
         <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="DepartingCity">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Departure
                 </label>
             </div>
             <div class="md:w-2/3">
-                <input v-model="state.form.departure_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="DepartingCity" type="text" placeholder="Paris">
+                <VueMultiselect v-model="state.departure" :options="departures" label="name" track-by="id"></VueMultiselect>
             </div>
             <div class="md:w-2/3">
                 <span v-if="state.form.errors.has('departure_id')" v-text="state.form.errors.get('departure_id')"></span>
@@ -47,12 +43,12 @@
 
         <div class="md:flex md:items-center mb-6">
             <div class="md:w-1/3">
-                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="ArrivingCity">
+                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Arrival
                 </label>
             </div>
             <div class="md:w-2/3">
-                <input v-model="state.form.arrival_id" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="ArrivingCity" type="text" placeholder="Miami">
+                <VueMultiselect v-model="state.arrival" :options="arrivals"  label="name" track-by="id"></VueMultiselect>
             </div>
             <div class="md:w-2/3">
                 <span v-if="state.form.errors.has('arrival_id')" v-text="state.form.errors.get('arrival_id')"></span>
@@ -88,12 +84,19 @@
 
 <script>
 
+
 import Form from "./FormTemplate"
-import {reactive, watch} from "vue";
+import {reactive} from "vue";
+import VueMultiselect from 'vue-multiselect'
 export default {
+    components:{
+        VueMultiselect
+    },
     name: "Form",
     props:['flight_id'],
-    setup(){
+    emits:['edited-flight','added-flight'],
+    setup(props, {emit}){
+
         const state=reactive({
             form:new Form({
                 airline_id:'',
@@ -102,37 +105,156 @@ export default {
                 departure_date:'',
                 arrival_date:'',
             }),
+            airline:'',
+            arrival:'',
+            departure:'',
+
+            airlines:[],
+
 
         })
+
+
+
 
         function submit(type,url){
             url='/flights'
             type='post'
-            state.post.sumbit(type,url)
+            let event='added-flight'
+            if(props.flight_id){
+                url='/flights/'+props.flight_id
+                type='patch'
+                event='edited-flight'
+            }
+            state.form.submit(type,url)
+                .then(response=>{
+                    emit(event,response)
+                    if(type=='post'){
+                        this.reset()
+                    }
+
+                })
+                .catch(error=> {
+                    console.log(state.form.errors)
+                    console.log(error)
+                })
+
+        }
+
+        function reset(){
+            state.airline=''
+            state.arrival=''
+            state.departure=''
+            state.form.reset()
+
         }
 
 
+
         return {
-            state,submit
+            state,submit,reset
         }
 
 
 
     },
+    mounted() {
+        if(this.flight_id){
+            axios.get('flights/'+this.flight_id).then(response=>{
+                let flight=response.data
+                this.state.airline=flight.airline
+                this.state.arrival=flight.arrival
+                this.state.departure=flight.departure
 
-    watch:{
-        flight_id:function(newVal,oldVal){
-            //axios request to get flight with new id
-            console.log("Flight id changed from "+oldVal+ " to "+ newVal)
+                this.state.form.departure_date=flight.departure_date.replace(' ','T')
+                this.state.form.arrival_date=flight.arrival_date.replace(' ','T')
+            })
         }
+        this.getAllAirlines()
+
+
+    },
+
+    computed:{
+        departures(){
+            let departures=[]
+            let arrival=this.state.arrival
+
+            if(this.state.form.airline_id){
+                departures=this.state.airline.cities
+
+                if(arrival) {
+                    departures=(departures.filter((city) => arrival.id != city.id))
+                }
+            }
+            return departures
+        },
+        arrivals(){
+            let arrivals=[]
+            let departure=this.state.departure
+
+            if(this.state.form.airline_id){
+
+                arrivals=this.state.airline.cities
+
+                if(departure) {
+
+                   arrivals=(arrivals.filter((city) => departure.id != city.id))
+                }
+            }
+            return arrivals
+        }
+
+    },
+    methods:{
+
+
+        getAllAirlines(){
+            axios.get('/airlines/all').then(response=>{
+                this.state.airlines=response.data
+            })
+        },
+
+
+    },
+    watch:{
+
+        'state.airline':function(newVal,oldVal){
+            if(newVal){
+                this.state.form.airline_id=newVal.id
+                if(oldVal){
+                    this.state.arrival=''
+                    this.state.departure=''
+                }
+
+            }
+
+
+        },
+        'state.arrival':function(newVal,oldVal){
+            if(newVal){
+                this.state.form.arrival_id=newVal.id
+            }else{
+                this.state.form.arrival_id=''
+            }
+
+        },
+        'state.departure':function(newVal,oldVal){
+            if(newVal){
+                this.state.form.departure_id=newVal.id
+            }else{
+                this.state.form.departure_id=''
+            }
+
+        },
     }
+
+
 
 }
 
 
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 
-<style scoped>
-
-</style>
 
