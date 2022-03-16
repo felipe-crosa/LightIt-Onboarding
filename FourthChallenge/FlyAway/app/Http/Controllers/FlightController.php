@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flight;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class FlightController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         return view('flights', [
             'flights' => $this->all(),
         ]);
     }
 
-    public function update(Flight $flight)
+    public function update(Flight $flight) :JsonResponse
     {
         $attributes = request()->validate([
             'airline_id'=>['required', Rule::exists('airlines', 'id')],
@@ -26,14 +28,13 @@ class FlightController extends Controller
         ]);
 
         $flight->update($attributes);
-        $flight->airline;
-        $flight->arrival;
-        $flight->departure;
+
+        $flight->load('airline','departure','arrival');
 
         return response()->json($flight);
     }
 
-    public function store()
+    public function store() :JsonResponse
     {
         $arguments = request()->validate([
                 'airline_id'=>['required', Rule::exists('airlines', 'id')],
@@ -44,24 +45,23 @@ class FlightController extends Controller
             ]);
 
         $flight = Flight::create($arguments);
+        $flight->load('airline','departure','arrival');
 
-        $flight->airline;
-        $flight->arrival;
-        $flight->departure;
 
         return response()->json($flight);
     }
 
-    public function destroy(Flight $flight)
+    public function destroy(Flight $flight) :JsonResponse
     {
         $flight->delete();
 
         return response()->json();
     }
 
-    public function show($id)
+    public function show(Flight $flight) :JsonResponse
     {
-        return response()->json(Flight::with('airline.cities', 'departure', 'arrival')->find($id));
+        $flight->load('airline.cities','departure','arrival');
+        return response()->json($flight);
     }
 
     public function all()

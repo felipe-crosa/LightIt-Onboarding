@@ -13,6 +13,7 @@ import TableComponent from "./components/TableComponent";
 import FlightForm from "./components/FlightForm";
 import modalComponent from "./components/modalComponent";
 import deleteFlightForm from "./components/deleteFlightForm";
+import alertMessage from "./components/alert-message";
 
 
 createApp({
@@ -27,13 +28,17 @@ createApp({
             "delete_flight_id":"",
             'deletedFlight':'',
             'editedFlight':'',
-            'addedFlight':''
+            'addedFlight':'',
+            'showAlert':'',
+            'alertType':'',
+            'alertMessage':'',
 
 
         }
     }
     ,
     components:{
+        alertMessage,
         deleteFlightForm,
         TableComponent,
         FlightForm,
@@ -59,16 +64,24 @@ createApp({
             this.showAdd=false;
         },
         added:function(flight){
-            console.log('Sigue vivo')
            this.addedFlight=flight
+            this.showAlert='true'
+            this.alertMessage='Flight Added Succesfully'
         },
         edited:function(flight){
             this.closeModal()
             this.editedFlight=flight
+            this.showAlert='true'
+            this.alertMessage='Flight Edited Succesfully'
         },
         deleted:function(id){
             this.closeModal()
             this.deletedFlight=id
+            this.showAlert='true'
+            this.alertMessage='Flight Deleted Succesfully'
+        },
+        closeAlert(){
+            this.showAlert=false
         }
 
     },

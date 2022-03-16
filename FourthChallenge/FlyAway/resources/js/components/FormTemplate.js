@@ -1,7 +1,7 @@
 
 export default class Form{
     constructor(data){
-        this.data=data //fijarse para que sirve
+        this.data=data
         for(let field in data){
             this[field]=data[field]
         }
@@ -17,8 +17,9 @@ export default class Form{
 
                 resolve(response.data)
             }).catch(error=>{
-                this.errors.set(error.response.data)
-                reject(error.response.data)
+                console.log(error.response.data.errors)
+                this.errors.set(error.response.data.errors)
+                reject(error.response.data.errors)
             })
 
         })

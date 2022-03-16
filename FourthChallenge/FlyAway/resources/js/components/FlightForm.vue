@@ -1,7 +1,7 @@
 <template>
 
     <form class="w-full max-w-lg">
-        <div class="md:flex md:items-center mb-6">
+        <div class="md:flex md:items-center mb-2">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Airline
@@ -10,11 +10,12 @@
             <div class="md:w-2/3">
                 <VueMultiselect v-model="state.airline"  :options="state.airlines" track-by="id" label="name" model-value="id"></VueMultiselect>
             </div>
-            <div class="md:w-2/3">
-                <span v-if="state.form.errors.has('airline_id')" v-text="state.form.errors.get('airline_id')"></span>
-            </div>
         </div>
-        <div class="md:flex md:items-center mb-6">
+        <div class="mb-6">
+        <span class="text-xs text-red-700" v-if="state.form.errors.has('airline_id')" v-text="state.form.errors.get('airline_id')"></span>
+        </div>
+
+        <div class="md:flex md:items-center mb-2">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Departure
@@ -23,11 +24,13 @@
             <div class="md:w-2/3">
                 <VueMultiselect v-model="state.departure" :options="departures" label="name" track-by="id"></VueMultiselect>
             </div>
-            <div class="md:w-2/3">
-                <span v-if="state.form.errors.has('departure_id')" v-text="state.form.errors.get('departure_id')"></span>
-            </div>
+
         </div>
-        <div class="md:flex md:items-center mb-6">
+        <div class="mb-6">
+            <span class="text-xs text-red-700" v-if="state.form.errors.has('departure_id')" v-text="state.form.errors.get('departure_id')"></span>
+        </div>
+
+        <div class="md:flex md:items-center mb-2">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="DepartingDate">
                     Departure Date
@@ -36,12 +39,14 @@
             <div class="md:w-2/3">
                 <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="DepartingDate" type="datetime-local" :max="state.form.arrival_date" v-model="state.form.departure_date">
             </div>
-            <div class="md:w-2/3">
-                <span v-if="state.form.errors.has('departure_date')" v-text="state.form.errors.get('departure_date')"></span>
-            </div>
+
+        </div>
+        <div class="mb-6">
+            <span class="text-xs text-red-700" v-if="state.form.errors.has('departure_date')" v-text="state.form.errors.get('departure_date')"></span>
         </div>
 
-        <div class="md:flex md:items-center mb-6">
+
+        <div class="md:flex md:items-center mb-2">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Arrival
@@ -50,11 +55,12 @@
             <div class="md:w-2/3">
                 <VueMultiselect v-model="state.arrival" :options="arrivals"  label="name" track-by="id"></VueMultiselect>
             </div>
-            <div class="md:w-2/3">
-                <span v-if="state.form.errors.has('arrival_id')" v-text="state.form.errors.get('arrival_id')"></span>
-            </div>
         </div>
-        <div class="md:flex md:items-center mb-6">
+        <div class="mb-6">
+            <span class="text-xs text-red-700" v-if="state.form.errors.has('arrival_id')" v-text="state.form.errors.get('arrival_id')"></span>
+        </div>
+
+        <div class="md:flex md:items-center mb-2">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="ArrivingDate">
                     Arrival Date
@@ -63,10 +69,11 @@
             <div class="md:w-2/3">
                 <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="ArrivingDate" type="datetime-local" :min="state.form.departure_date" v-model="state.form.arrival_date">
             </div>
-            <div class="md:w-2/3">
-                <span v-if="state.form.errors.has('arrival_date')" v-text="state.form.errors.get('arrival_date')"></span>
-            </div>
         </div>
+        <div class="mb-6">
+            <span class="text-xs text-red-700" v-if="state.form.errors.has('arrival_date')" v-text="state.form.errors.get('arrival_date')"></span>
+        </div>
+
 
         <div class="md:flex md:items-center">
             <div class="md:w-1/3"></div>
@@ -135,7 +142,7 @@ export default {
 
                 })
                 .catch(error=> {
-                    console.log(state.form.errors)
+
                     console.log(error)
                 })
 

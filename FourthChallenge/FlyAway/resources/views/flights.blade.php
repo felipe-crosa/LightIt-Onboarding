@@ -21,8 +21,9 @@
             <template v-slot:header>Add</template>
             <flight-form @added-flight="added" />
         </modal-component>
+
+        <alert-message @close-alert="closeAlert" v-if="showAlert">@{{alertMessage}}</alert-message>
     </div>
     <script src="/js/app.js"> </script>
 </x-layout>
-
 

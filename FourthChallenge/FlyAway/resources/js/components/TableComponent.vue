@@ -80,6 +80,8 @@
             },
 
             editFlight:function(editedFlight){
+                editedFlight.departure_date=editedFlight.departure_date.replace('T'," ")
+                editedFlight.arrival_date=editedFlight.arrival_date.replace('T'," ")
                 for(let i=0;i<this.flights.length;i++){
                     if(this.flights[i].id==editedFlight.id){
                         this.flights[i]={...editedFlight}
@@ -92,8 +94,8 @@
             },
 
             addFlight:function(addedFlight){
-                console.log(addedFlight)
-                console.log(this.flights[0])
+                addedFlight.departure_date=addedFlight.departure_date.replace('T'," ")
+                addedFlight.arrival_date=addedFlight.arrival_date.replace('T'," ")
                 this.flights.push(addedFlight);
             }
 
