@@ -13,7 +13,7 @@ class AirlineController extends Controller
     public function index() : View
     {
         return view('airlines', [
-            'airlines' => Airline::withCount('flights')->orderBy('id','desc')->paginate(5),
+            'airlines' => Airline::withCount('flights')->orderBy('id', 'desc')->paginate(5),
             'cities'=>City::all(),
         ]);
     }

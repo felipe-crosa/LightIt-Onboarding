@@ -11,9 +11,8 @@ class CityController extends Controller
 {
     public function index() : View
     {
-
         return view('cities', [
-            'cities' => City::withCount('arriving_flights','departing_flights')->orderBy('id','desc')->paginate(5),
+            'cities' => City::withCount('arriving_flights', 'departing_flights')->orderBy('id', 'desc')->paginate(5),
         ]);
     }
 
@@ -26,7 +25,6 @@ class CityController extends Controller
         $city->update($attributes);
 
         return response()->json($city);
-
     }
 
     public function edit(City $city) :View
