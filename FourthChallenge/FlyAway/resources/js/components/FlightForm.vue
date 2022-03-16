@@ -1,7 +1,7 @@
 <template>
 
     <form class="w-full max-w-lg">
-        <div class="md:flex md:items-center mb-2">
+        <div class="md:flex md:items-center mb-1">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Airline
@@ -12,10 +12,10 @@
             </div>
         </div>
         <div class="mb-6">
-        <span class="text-xs text-red-700" v-if="state.form.errors.has('airline_id')" v-text="state.form.errors.get('airline_id')"></span>
+            <span class="ml-40 text-xs text-red-700" v-if="state.form.errors.has('airline_id')" v-text="state.form.errors.get('airline_id')"></span>
         </div>
 
-        <div class="md:flex md:items-center mb-2">
+        <div class="md:flex md:items-center mb-1">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Departure
@@ -27,10 +27,10 @@
 
         </div>
         <div class="mb-6">
-            <span class="text-xs text-red-700" v-if="state.form.errors.has('departure_id')" v-text="state.form.errors.get('departure_id')"></span>
+            <span class="ml-40 text-xs text-red-700" v-if="state.form.errors.has('departure_id')" v-text="state.form.errors.get('departure_id')"></span>
         </div>
 
-        <div class="md:flex md:items-center mb-2">
+        <div class="md:flex md:items-center mb-1">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="DepartingDate">
                     Departure Date
@@ -42,11 +42,11 @@
 
         </div>
         <div class="mb-6">
-            <span class="text-xs text-red-700" v-if="state.form.errors.has('departure_date')" v-text="state.form.errors.get('departure_date')"></span>
+            <span class="ml-40 text-xs text-red-700" v-if="state.form.errors.has('departure_date')" v-text="state.form.errors.get('departure_date')"></span>
         </div>
 
 
-        <div class="md:flex md:items-center mb-2">
+        <div class="md:flex md:items-center mb-1">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" >
                     Arrival
@@ -57,10 +57,10 @@
             </div>
         </div>
         <div class="mb-6">
-            <span class="text-xs text-red-700" v-if="state.form.errors.has('arrival_id')" v-text="state.form.errors.get('arrival_id')"></span>
+            <span class="ml-40 text-xs text-red-700" v-if="state.form.errors.has('arrival_id')" v-text="state.form.errors.get('arrival_id')"></span>
         </div>
 
-        <div class="md:flex md:items-center mb-2">
+        <div class="md:flex md:items-center mb-1">
             <div class="md:w-1/3">
                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="ArrivingDate">
                     Arrival Date
@@ -71,7 +71,7 @@
             </div>
         </div>
         <div class="mb-6">
-            <span class="text-xs text-red-700" v-if="state.form.errors.has('arrival_date')" v-text="state.form.errors.get('arrival_date')"></span>
+            <span class="ml-40 text-xs text-red-700" v-if="state.form.errors.has('arrival_date')" v-text="state.form.errors.get('arrival_date')"></span>
         </div>
 
 
@@ -229,11 +229,12 @@ export default {
         'state.airline':function(newVal,oldVal){
             if(newVal){
                 this.state.form.airline_id=newVal.id
-                if(oldVal){
-                    this.state.arrival=''
-                    this.state.departure=''
-                }
-
+            }else{
+                this.state.form.airline_id=''
+            }
+            if(oldVal){
+                this.state.arrival=''
+                this.state.departure=''
             }
 
 

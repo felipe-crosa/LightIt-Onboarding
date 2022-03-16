@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Airline;
 use App\Models\City;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class AirlineController extends Controller
 {
-    public function index()
+    public function index() : View
     {
         return view('airlines', [
-            'airlines' => Airline::orderBy('id')->paginate(5),
+            'airlines' => Airline::withCount('flights')->orderBy('id','desc')->paginate(5),
             'cities'=>City::all(),
         ]);
     }
 
-    public function update(Airline $airline)
+    public function update(Airline $airline) : JsonResponse
     {
         $attributes = request()->validate([
             'name'=>['required', 'max:255', Rule::unique('airlines', 'name')->ignore($airline)],
@@ -29,12 +31,12 @@ class AirlineController extends Controller
         return response()->json();
     }
 
-    public function edit(Airline $airline)
+    public function edit(Airline $airline) : View
     {
         return view('airlines-edit', ['airline'=>$airline, 'cities'=>City::all()]);
     }
 
-    public function store()
+    public function store() : JsonResponse
     {
         $arguments = request()->validate([
             'name'=>'required|unique:airlines,name|max:255',
@@ -48,14 +50,14 @@ class AirlineController extends Controller
         return response()->json($airline);
     }
 
-    public function destroy(Airline $airline)
+    public function destroy(Airline $airline) : JsonResponse
     {
         $airline->delete();
 
         return response()->json();
     }
 
-    public function all()
+    public function all() : JsonResponse
     {
         return response()->json(Airline::with('cities')->get());
     }

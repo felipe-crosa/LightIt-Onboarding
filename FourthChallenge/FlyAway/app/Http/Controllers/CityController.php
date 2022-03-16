@@ -3,38 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 
 class CityController extends Controller
 {
-    public function index()
+    public function index() : View
     {
+
         return view('cities', [
-            'cities' => City::orderBy('id')->paginate(5),
+            'cities' => City::withCount('arriving_flights','departing_flights')->orderBy('id','desc')->paginate(5),
         ]);
     }
 
-    public function update(City $city)
+    public function update(City $city) : JsonResponse
     {
-        //validate city
         $attributes = request()->validate([
             'name'=>['regex:/^[\pL\s\-]+$/u', 'required', 'max:255', Rule::unique('cities', 'name')->ignore($city)],
         ]);
-        //dd($attributes);
-        //Update it
+
         $city->update($attributes);
 
         return response()->json($city);
 
-        //  return back()->with('success', 'City Updated!');
     }
 
-    public function edit(City $city)
+    public function edit(City $city) :View
     {
         return view('cities-edit', ['city'=>$city]);
     }
 
-    public function store()
+    public function store() :JsonResponse
     {
         $arguments = request()->validate([
             'name'=>'required|regex:/^[\pL\s\-]+$/u|unique:cities,name|max:255',
@@ -45,7 +45,7 @@ class CityController extends Controller
         return response()->json($city);
     }
 
-    public function destroy(City $city)
+    public function destroy(City $city) : JsonResponse
     {
         $city->delete();
 
