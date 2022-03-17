@@ -11,15 +11,15 @@ class CityController extends Controller
 {
     public function index() : View
     {
-        $sortBy='id';
-        if(request('sortCriteria')){
-            $sortBy=request('sortCriteria');
+        $sortBy = 'id';
+        if (request('sortCriteria')) {
+            $sortBy = request('sortCriteria');
         }
 
         return view('cities', [
 
             'cities' => City::withCount('arriving_flights', 'departing_flights')->orderBy($sortBy, 'desc')->paginate(5),
-            'sortCriteria'=>$sortBy
+            'sortCriteria'=>$sortBy,
         ]);
     }
 
