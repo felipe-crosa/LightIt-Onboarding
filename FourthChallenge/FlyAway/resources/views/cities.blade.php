@@ -89,11 +89,13 @@
 
                         },
                         success: function(response) {
+
                             if(currentPage.length==5){
                                 $("#table-row-"+currentPage[4]).remove()
-                                currentPage.unshift(response.id)
+
                                 currentPage.pop()
                             }
+                            currentPage.unshift(response.id)
 
                             $("#errors").html("");
                             $("#citiesTable tbody").prepend(`<tr id="table-row-${response.id}" class="border-b bg-gray-800 border-gray-700">
@@ -138,6 +140,7 @@
                         type: "DELETE",
                         url : "/cities/"+city_id,
                         success: function(response){
+                            currentPage=currentPage.filter(item=>item!=city_id)
                             $("#table-row-"+city_id).remove()
                         }
 

@@ -135,11 +135,11 @@
                             if(currentPage.length==5){
                                 let row = document.getElementById(`table-row-${currentPage[4]}`)
                                 row.remove()
-                                currentPage.unshift(response.id)
+
                                 currentPage.pop()
                             }
                             response = await response.json()
-
+                            currentPage.unshift(response.id)
                             let table = document.getElementById('airlinesTable');
                             let tBody = table.getElementsByTagName('tbody')[0];
                             tBody.innerHTML = (`<tr id="table-row-${ response.id }" class="border-b bg-gray-800 border-gray-700">
@@ -196,8 +196,8 @@
                     });
 
                     response = await response.json()
-
                     let row = document.getElementById(`table-row-${id}`)
+                    currentPage=currentPage.filter(item=>item!=id)
                     row.remove()
 
                 }
