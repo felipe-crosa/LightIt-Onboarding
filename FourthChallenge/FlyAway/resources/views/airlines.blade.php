@@ -99,6 +99,7 @@
 
 
         <script>
+            var currentPage={{json_encode(Arr::pluck($airlines->items(),'id'))}};
             var cities=[]
                 function reloadDeleteAirlineButtons() {
                     let deleteButtons = document.getElementsByClassName('deleteButton');
@@ -131,9 +132,14 @@
                             })
                         });
                         if (response.ok) {
+                            if(currentPage.length==5){
+                                let row = document.getElementById(`table-row-${currentPage[4]}`)
+                                row.remove()
 
+                                currentPage.pop()
+                            }
                             response = await response.json()
-                            console.log(response)
+                            currentPage.unshift(response.id)
                             let table = document.getElementById('airlinesTable');
                             let tBody = table.getElementsByTagName('tbody')[0];
                             tBody.innerHTML = (`<tr id="table-row-${ response.id }" class="border-b bg-gray-800 border-gray-700">
@@ -163,7 +169,7 @@
                         } else {
                             response = await response.json()
                             let errors = document.getElementById('errors')
-                            console.log(errors)
+
                             errors.innerHTML = `<x-alert>${response.message}</x-alert>`
                         }
 
@@ -190,8 +196,8 @@
                     });
 
                     response = await response.json()
-
                     let row = document.getElementById(`table-row-${id}`)
+                    currentPage=currentPage.filter(item=>item!=id)
                     row.remove()
 
                 }

@@ -64,7 +64,13 @@
             </div>
         </div>
         <div id="errors"></div>
+
+
+
         <script>
+            var currentPage={{json_encode(Arr::pluck($cities->items(),'id'))}};
+
+
             $(document).ready(function() {
                 $('#addCityForm').submit(function(e) {
                     e.preventDefault();
@@ -73,23 +79,30 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                   
+
                     $.ajax({
                         type: "POST",
                         url: "{{ route('city.store') }}",
-                        
+
                         data: {
                             name: $("#name").val(),
-                           
+
                         },
                         success: function(response) {
-                           
+
+                            if(currentPage.length==5){
+                                $("#table-row-"+currentPage[4]).remove()
+
+                                currentPage.pop()
+                            }
+                            currentPage.unshift(response.id)
+
                             $("#errors").html("");
-                            $("#citiesTable tbody").prepend(`<tr id="table-row-${response.id}" class="border-b bg-gray-800 border-gray-700"> 
-                        <x-table-body-entry>${response.id}</x-table-body-entry> 
+                            $("#citiesTable tbody").prepend(`<tr id="table-row-${response.id}" class="border-b bg-gray-800 border-gray-700">
+                        <x-table-body-entry>${response.id}</x-table-body-entry>
                         <x-table-body-entry>${response.name}</x-table-body-entry>
                         <x-table-body-entry>0</x-table-body-entry>
-                        <x-table-body-entry>0</x-table-body-entry> 
+                        <x-table-body-entry>0</x-table-body-entry>
                         <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
                                         <a href="cities/${response.id}/edit" class="text-blue-500 hover:underline">Edit</a>
                         </td>
@@ -102,19 +115,19 @@
                         </td>
                         </tr>`)
                         $("#addCityForm")[0].reset()
-                            
+
                         },
                         error: function(error){
                             $("#errors").html("");
-                            
+
                             $("#errors").prepend(`<x-alert>${error.responseJSON.message}</x-alert>`);
-                            
+
                         }
 
                     });
                 });
                 $(document).on('click','.deleteButton',function(e){
-                    
+
                     e.preventDefault();
                     let city_id= $(this).val();
                     $.ajaxSetup({
@@ -122,21 +135,22 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
-                    
+
                     $.ajax({
                         type: "DELETE",
-                        url : "/cities/"+city_id,  
+                        url : "/cities/"+city_id,
                         success: function(response){
+                            currentPage=currentPage.filter(item=>item!=city_id)
                             $("#table-row-"+city_id).remove()
                         }
 
-                    
+
                     })
                 });
 
 
             });
         </script>
-       
+
     </div>
 </x-layout>

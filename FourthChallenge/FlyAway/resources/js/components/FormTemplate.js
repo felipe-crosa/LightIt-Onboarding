@@ -1,7 +1,7 @@
 
 export default class Form{
     constructor(data){
-        this.data=data //fijarse para que sirve
+        this.data=data
         for(let field in data){
             this[field]=data[field]
         }
@@ -9,23 +9,34 @@ export default class Form{
     }
 
     submit(requestType,url){
-        //create a promise for this request
-        axios[requestType](url,data())
-            .catch(error=>this.errors.set(error.response.data))
+        return new Promise((resolve,reject)=>{
+            axios[requestType](url,this.getData()).then(response=>{
+                if(requestType=='post'){
+                    this.reset()
+                }
 
+                resolve(response.data)
+            }).catch(error=>{
+                console.log(error.response.data.errors)
+                this.errors.set(error.response.data.errors)
+                reject(error.response.data.errors)
+            })
 
+        })
     }
-    data(){
+    getData(){
         let data={}
-        for(let field of this.data){
+        for(let field in this.data){
             data[field]=this[field]
         }
+
         return data
     }
     reset(){
-        for(let field of this.data){
+        for(let field in this.data){
             this[field]=''
         }
+        this.errors.clear()
     }
     setup(object){
         for(let field in object){
@@ -41,7 +52,7 @@ export class Errors{
         this.errors={}
     }
     has(field){
-        return this.hasOwnProperty(field)
+        return this.errors.hasOwnProperty(field)
     }
     any(){
        return Object.keys(this.errors).length>0
@@ -56,6 +67,6 @@ export class Errors{
     }
 
     clear(field=null){
-        (field) ? errors[field]="" : this.errors={};
+        (field) ? delete this.errors[field] : this.errors={};
     }
 }

@@ -15,5 +15,5 @@ yarn-error.log
 /.vscode
 .DS_Store
 .php-cs-fixer.cache
-package-lock.json
 /public/js/app.js
+package.json

@@ -13,21 +13,32 @@ import TableComponent from "./components/TableComponent";
 import FlightForm from "./components/FlightForm";
 import modalComponent from "./components/modalComponent";
 import deleteFlightForm from "./components/deleteFlightForm";
+import alertMessage from "./components/alert-message";
 
 
 createApp({
+
     data() {
         return {
+
             "showDelete": false,
             "showEdit": false,
             "showAdd": false,
             "edit_flight_id":'',
-            "delete_flight_id":""
+            "delete_flight_id":"",
+            'deletedFlight':'',
+            'editedFlight':'',
+            'addedFlight':'',
+            'showAlert':'',
+            'alertType':'',
+            'alertMessage':'',
+
 
         }
     }
     ,
     components:{
+        alertMessage,
         deleteFlightForm,
         TableComponent,
         FlightForm,
@@ -36,8 +47,10 @@ createApp({
     },
     methods:{
         deleteFlight:function(id){
+
             this.showDelete=!this.showDelete
             this.delete_flight_id=id
+
         },
         editFlight:function(flight_id){
             this.edit_flight_id=flight_id
@@ -45,13 +58,32 @@ createApp({
 
         },
         closeModal:function(){
+
             this.showEdit=false;
             this.showDelete=false;
             this.showAdd=false;
         },
-        prueba:function(){
-
+        added:function(flight){
+           this.addedFlight=flight
+            this.showAlert='true'
+            this.alertMessage='Flight Added Succesfully'
+        },
+        edited:function(flight){
+            this.closeModal()
+            this.editedFlight=flight
+            this.showAlert='true'
+            this.alertMessage='Flight Edited Succesfully'
+        },
+        deleted:function(id){
+            this.closeModal()
+            this.deletedFlight=id
+            this.showAlert='true'
+            this.alertMessage='Flight Deleted Succesfully'
+        },
+        closeAlert(){
+            this.showAlert=false
         }
+
     },
     computed:{
 
