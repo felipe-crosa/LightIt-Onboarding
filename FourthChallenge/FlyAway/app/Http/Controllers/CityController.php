@@ -11,8 +11,15 @@ class CityController extends Controller
 {
     public function index() : View
     {
+        $sortBy='id';
+        if(request('sortCriteria')){
+            $sortBy=request('sortCriteria');
+        }
+
         return view('cities', [
-            'cities' => City::withCount('arriving_flights', 'departing_flights')->orderBy('id', 'desc')->paginate(5),
+
+            'cities' => City::withCount('arriving_flights', 'departing_flights')->orderBy($sortBy, 'desc')->paginate(5),
+            'sortCriteria'=>$sortBy
         ]);
     }
 
@@ -49,4 +56,10 @@ class CityController extends Controller
 
         return response()->json();
     }
+//
+//    public function all() : JsonResponse
+//    {
+//        $sortCriteria=request('sortBy');
+//        return response()->json(City::orderBy($sortCriteria)->get());
+//    }
 }

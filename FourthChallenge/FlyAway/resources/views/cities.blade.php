@@ -1,5 +1,13 @@
 <x-layout>
-
+    <div>
+        <form id="sortForm" action="/cities" method="get">
+            <p>Sort By: </p>
+            <label for="byId">ID</label>
+            <input value="id" type="radio" name="sortCriteria" @if($sortCriteria=='id') checked @endif id="byId">
+            <label for="byName">Name</label>
+            <input value="name" type="radio" name="sortCriteria" @if($sortCriteria=='name') checked @endif id="byName">
+        </form>
+    </div>
     <div class="flex flex-col mt-10">
         <x-table :id="'citiesTable'">
             <x-slot name='headers'>
@@ -34,7 +42,7 @@
             </x-slot>
 
             <x-slot name='pagination'>
-                {{ $cities->links() }}
+                {{ $cities->appends(request()->query())->links() }}
             </x-slot>
 
         </x-table>
@@ -148,8 +156,23 @@
                     })
                 });
 
+                function sumbitSort(event){
+                    $('#sortForm').submit()
+                }
+
+                $(document).on('change','#byId',function(event){
+                    sumbitSort(event)
+                })
+                $(document).on('change','#byName',function(event){
+                    sumbitSort(event)
+                })
+
+
 
             });
+
+
+
         </script>
 
     </div>
