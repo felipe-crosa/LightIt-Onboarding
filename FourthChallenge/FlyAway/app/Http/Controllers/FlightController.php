@@ -64,7 +64,7 @@ class FlightController extends Controller
         return response()->json($flight);
     }
 
-    public function all()
+    public function all() : JsonResponse
     {
         return response()->json(Flight::with('airline.cities', 'departure', 'arrival')->get());
     }
