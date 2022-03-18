@@ -21,7 +21,6 @@ Route::get('/', function () {
 Route::get('flights/all', [\App\Http\Controllers\FlightController::class, 'all']);
 Route::resource('flights', \App\Http\Controllers\FlightController::class)->except(['create', 'edit']);
 
-
 Route::resource('cities', CityController::class)->except(['create', 'show'])->names([
     'store'=>'city.store',
     'index'=>'city.index',
