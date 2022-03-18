@@ -13,6 +13,13 @@ class City extends Model
 
     public function scopeFilter($query, array $filters)
     {
+        $query->when($filters['airlineId'] ?? false, fn($query,$airlineId)=>
+            $query->whereExists(fn($query)=>
+                $query->from('airline_city')
+                    ->where('airline_city.airline_id',$airlineId)
+                    ->whereRaw('airline_city.city_id = cities.id')
+            )
+        );
     }
 
     public function departing_flights()

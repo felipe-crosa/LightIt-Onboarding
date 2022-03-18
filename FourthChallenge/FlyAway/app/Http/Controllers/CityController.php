@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Airline;
 use App\Models\City;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
@@ -11,15 +13,17 @@ class CityController extends Controller
 {
     public function index() : View
     {
-        $sortBy = 'id';
-        if (request('sortCriteria')) {
-            $sortBy = request('sortCriteria');
+        $sortBy = (request('sortCriteria')) ? request('sortCriteria') : 'id';
+
+        $cities=City::withCount('arriving_flights', 'departing_flights')->orderBy($sortBy, 'desc');
+
+        if(request('airlineId')){
+            $cities=$cities->filter(request(['airlineId']));
         }
 
         return view('cities', [
-
-            'cities' => City::withCount('arriving_flights', 'departing_flights')->orderBy($sortBy, 'desc')->paginate(5),
-            'sortCriteria'=>$sortBy,
+            'cities' => $cities->paginate(5),
+            'airlines'=> Airline::all()
         ]);
     }
 
@@ -53,13 +57,7 @@ class CityController extends Controller
     public function destroy(City $city) : JsonResponse
     {
         $city->delete();
-
         return response()->json();
     }
-//
-//    public function all() : JsonResponse
-//    {
-//        $sortCriteria=request('sortBy');
-//        return response()->json(City::orderBy($sortCriteria)->get());
-//    }
+
 }

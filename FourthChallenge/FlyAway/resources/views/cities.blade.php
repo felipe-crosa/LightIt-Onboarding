@@ -1,11 +1,22 @@
 <x-layout>
     <div>
         <form id="sortForm" action="/cities" method="get">
+            @if(request('airlineId'))<input type="hidden" name="airlineId"  value="{{request('airlineId')}}"/>@endif
             <p>Sort By: </p>
             <label for="byId">ID</label>
-            <input value="id" type="radio" name="sortCriteria" @if($sortCriteria=='id') checked @endif id="byId">
+            <input value="id" type="radio" name="sortCriteria" @if(request('sortCriteria')=='id'||!request('sortCriteria')) checked @endif id="byId">
             <label for="byName">Name</label>
-            <input value="name" type="radio" name="sortCriteria" @if($sortCriteria=='name') checked @endif id="byName">
+            <input value="name" type="radio" name="sortCriteria" @if(request('sortCriteria')=='name') checked @endif id="byName">
+        </form>
+
+        <form id="sortAirline" action="/cities" method="get">
+            @if(request('sortCriteria'))<input type="hidden" name="sortCriteria"  value="{{request('sortCriteria')}}"/>@endif
+            <select id="selectAirlines" name="airlineId">
+                <option @if(!request('airlineId')) selected @endif value="" >All</option>
+                @foreach($airlines as $airline)
+                    <option @if(request('airlineId')==$airline->id) selected @endif value="{{$airline->id}}">{{$airline->name}}</option>
+                @endforeach
+            </select>
         </form>
     </div>
     <div class="flex flex-col mt-10">
@@ -160,11 +171,19 @@
                     $('#sortForm').submit()
                 }
 
+                function submitAirline(event){
+                    $('#sortAirline').submit()
+                }
+
                 $(document).on('change','#byId',function(event){
                     sumbitSort(event)
                 })
                 $(document).on('change','#byName',function(event){
                     sumbitSort(event)
+                })
+
+                $(document).on('change','#selectAirlines', function(event){
+                    submitAirline()
                 })
 
 
