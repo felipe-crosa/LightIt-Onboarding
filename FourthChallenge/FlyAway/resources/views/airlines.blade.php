@@ -1,4 +1,18 @@
 <x-layout>
+    <form method="get" action="/airlines" class="mt-4 flex">
+        <label for="amountFlights">Airlines with: </label>
+        <input value="{{(request('amountFlights'))? request('amountFlights') : ''}}" name="amountFlights" type="number" id="amountFlights" min="0"/>
+        <label for="amountFlights">flights</label>
+        <div id="resetAmount" class="mt-1 ml-1"><x-cross-svg :size="18"/></div>
+        <label class="ml-10" for="flysTo">With flights to: </label>
+        <select name="selectCity" id="flysTo">
+            <option @if(!request('selectCity')) selected  @endif value="">Any City</option>
+            @foreach($cities as $city)
+                <option @if(request('selectCity')==$city->id) selected  @endif value="{{$city->id}}">{{$city->name}}</option>
+            @endforeach
+        </select>
+        <input type="submit" class="ml-10 bg-gray-600 text-white uppercase font-semibold text-xs py-2 px-10 rounded-xl hover:bg-gray-700"/>
+    </form>
     <x-table :id="'airlinesTable'">
         <x-slot name='headers'>
             <x-table-heading>ID</x-table-heading>
@@ -238,6 +252,10 @@
                     }
 
                 }
+                document.getElementById("resetAmount").addEventListener("click",function(){
+                    document.getElementById('amountFlights').value=''
+                })
+
 
 
         </script>
