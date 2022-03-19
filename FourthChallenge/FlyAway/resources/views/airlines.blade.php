@@ -1,7 +1,8 @@
 <x-layout>
+
     <form method="get" action="/airlines" class="mt-4 flex">
         <label for="amountFlights">Airlines with: </label>
-        <input value="{{(request('amountFlights'))? request('amountFlights') : ''}}" name="amountFlights" type="number" id="amountFlights" min="0"/>
+        <input value="{{(request('amountFlights')||request('amountFlights')==0)? request('amountFlights') : ''}}" name="amountFlights" type="number" id="amountFlights" min="0"/>
         <label for="amountFlights">flights</label>
         <div id="resetAmount" class="mt-1 ml-1"><x-cross-svg :size="18"/></div>
         <label class="ml-10" for="flysTo">With flights to: </label>
@@ -47,7 +48,7 @@
         </x-slot>
 
         <x-slot name='pagination'>
-            {{ $airlines->links() }}
+            {{ $airlines->appends(request()->query())->links() }}
         </x-slot>
 
     </x-table>

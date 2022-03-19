@@ -22,6 +22,14 @@ class Airline extends Model
                 ->whereRaw('airline_city.airline_id = airlines.id')
             )
         );
+
+        $flights= $filters['amountFlights'] ?? -1;
+
+
+        $query->when(
+            $flights>-1,
+            fn($query, $amountFlights)=> $query->has('flights','=',$flights)
+        );
     }
 
     public function flights()
